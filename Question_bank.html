@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GCSE Question Bank</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 420px;
+            margin: 80px auto;
+            padding: 30px;
+            background: #ffffffee;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 18px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #2575fc;
+            box-shadow: 0 0 5px #2575fc;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.25s;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #1a5ed8;
+            transform: scale(1.02);
+        }
+
+        .google-btn {
+            background: white;
+            color: #444;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .google-btn img {
+            width: 20px;
+        }
+
+        .google-btn:hover {
+            background: #f2f2f2;
+            transform: scale(1.02);
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .link a {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+
+        #signupMessage,
+        #loginMessage,
+        #forgotMessage,
+        #answerMessage,
+        #aiMessage {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Subject grid with icons */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .subject-card {
+            background: #f7f7f7;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #ddd;
+        }
+
+        .subject-card:hover {
+            background: #e9f0ff;
+            transform: translateY(-2px);
+            border-color: #2575fc;
+        }
+
+        .subject-icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Question area */
+        #questionsArea {
+            margin-top: 15px;
+        }
+
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            margin-top: 8px;
+            background: #f7f7f7;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        .option-btn:hover {
+            background: #e9f0ff;
+        }
+
+        .ai-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .ai-buttons button {
+            width: 100%;
+            background: #ffb300;
+        }
+
+        .ai-buttons button:hover {
+            background: #ff9800;
+        }
+
+        #scoreDisplay {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- SIGN UP PAGE -->
+<div id="signupPage" class="container">
+    <h2>Create an Account</h2>
+
+    <input type="text" id="newUser" placeholder="Choose a username">
+    <input type="password" id="newPass" placeholder="Choose a password">
+
+    <button onclick="signup()">Sign Up</button>
+
+    <button class="google-btn" onclick="fakeGoogleSignup()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg">
+        Sign up with Google
+    </button>
+
+    <p id="signupMessage"></p>
+
+    <div class="link">
+        <a href="#" onclick="showLogin()">Already have an account? Login</a>
+    </div>
+</div>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="container hidden">
+    <h2>Login</h2>
+
+    <input type="text" id="username" placeholder="Enter username">
+    <input type="password" id="password" placeholder="Enter password">
+
+    <button onclick="login()">Login</button>
+
+    <button class="google-btn" onclick="fakeGoogleLogin()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg">
+        Login with Google
+    </button>
+
+    <p id="loginMessage"></p>
+
+    <div class="link">
+        <a href="#" onclick="showSignup()">Sign up</a><br>
+        <a href="#" onclick="showForgot()">Forgot password</a>
+    </div>
+</div>
+
+<!-- FORGOT PASSWORD PAGE -->
+<div id="forgotPage" class="container hidden">
+    <h2>Forgot Password</h2>
+
+    <input type="text" id="forgotUser" placeholder="Enter your username">
+
+    <button onclick="recoverPassword()">Recover Password</button>
+
+    <p id="forgotMessage"></p>
+
+    <div class="link">
+        <a href="#" onclick="showLogin()">Back to login</a>
+    </div>
+</div>
+
+<!-- SUBJECT SELECTION PAGE -->
+<div id="subjectPage" class="container hidden">
+    <h2>Select a GCSE Subject</h2>
+    <p style="text-align:center;">Choose a subject to start mixed questions.</p>
+
+    <div class="subject-grid">
+        <div class="subject-card" onclick="selectSubject('Maths')">
+            <span class="subject-icon">📐</span>
+            Maths
+        </div>
+        <div class="subject-card" onclick="selectSubject('English')">
+            <span class="subject-icon">📘</span>
+            English
+        </div>
+        <div class="subject-card" onclick="selectSubject('Biology')">
+            <span class="subject-icon">🧬</span>
+            Biology
+        </div>
+        <div class="subject-card" onclick="selectSubject('Chemistry')">
+            <span class="subject-icon">⚗️</span>
+            Chemistry
+        </div>
+        <div class="subject-card" onclick="selectSubject('Physics')">
+            <span class="subject-icon">🔭</span>
+            Physics
+        </div>
+        <div class="subject-card" onclick="selectSubject('Geography')">
+            <span class="subject-icon">🌍</span>
+            Geography
+        </div>
+        <div class="subject-card" onclick="selectSubject('History')">
+            <span class="subject-icon">🏺</span>
+            History
+        </div>
+        <div class="subject-card" onclick="selectSubject('Computer Science')">
+            <span class="subject-icon">💻</span>
+            Computer Science
+        </div>
+    </div>
+
+    <div class="link">
+        <a href="#" onclick="logout()">Log out</a>
+    </div>
+</div>
+
+<!-- QUESTION PAGE -->
+<div id="questionPage" class="container hidden">
+    <h2 id="subjectTitle">GCSE Question Bank</h2>
+
+    <div id="scoreDisplay">Score: 0</div>
+
+    <div id="questionsArea">
+        <!-- Question text -->
+        <p id="questionText"><strong>Question:</strong> </p>
+
+        <!-- Multiple choice options -->
+        <div id="optionsArea"></div>
+
+        <!-- Short answer / fill-in input -->
+        <input type="text" id="textAnswer" class="hidden" placeholder="Type your answer here">
+
+        <button id="submitAnswerBtn" onclick="submitAnswer()">Submit Answer</button>
+
+        <p id="answerMessage"></p>
+
+        <button onclick="nextQuestion()">Next Question</button>
+
+        <div class="ai-buttons">
+            <button onclick="aiHint()">AI Hint</button>
+            <button onclick="aiExplain()">AI Explain</button>
+            <button onclick="aiPractice()">AI New Practice Question</button>
+        </div>
+
+        <p id="aiMessage"></p>
+    </div>
+
+    <div class="link">
+        <a href="#" onclick="showSubjectPage()">Back to subjects</a><br>
+        <a href="#" onclick="logout()">Log out</a>
+    </div>
+</div>
+
+<script>
+    // Navigation helpers
+    function showSignup() {
+        signupPage.classList.remove("hidden");
+        loginPage.classList.add("hidden");
+        forgotPage.classList.add("hidden");
+        subjectPage.classList.add("hidden");
+        questionPage.classList.add("hidden");
+    }
+
+    function showLogin() {
+        loginPage.classList.remove("hidden");
+        signupPage.classList.add("hidden");
+        forgotPage.classList.add("hidden");
+        subjectPage.classList.add("hidden");
+        questionPage.classList.add("hidden");
+    }
+
+    function showForgot() {
+        forgotPage.classList.remove("hidden");
+        signupPage.classList.add("hidden");
+        loginPage.classList.add("hidden");
+        subjectPage.classList.add("hidden");
+        questionPage.classList.add("hidden");
+    }
+
+    function showSubjectPage() {
+        subjectPage.classList.remove("hidden");
+        signupPage.classList.add("hidden");
+        loginPage.classList.add("hidden");
+        forgotPage.classList.add("hidden");
+        questionPage.classList.add("hidden");
+    }
+
+    // Auth
+    function signup() {
+        const user = newUser.value.trim();
+        const pass = newPass.value.trim();
+
+        if (!user || !pass) {
+            signupMessage.textContent = "Please fill in all fields.";
+            signupMessage.style.color = "red";
+            return;
+        }
+
+        localStorage.setItem(user, pass);
+
+        signupMessage.textContent = "Account created! You can now log in.";
+        signupMessage.style.color = "green";
+    }
+
+    function login() {
+        const user = username.value.trim();
+        const pass = password.value.trim();
+
+        if (!user || !pass) {
+            loginMessage.textContent = "Please fill in all fields.";
+            loginMessage.style.color = "red";
+            return;
+        }
+
+        const stored = localStorage.getItem(user);
+
+        if (stored && stored === pass) {
+            loginPage.classList.add("hidden");
+            showSubjectPage();
+        } else {
+            loginMessage.textContent = "Incorrect username or password.";
+            loginMessage.style.color = "red";
+        }
+    }
+
+    function recoverPassword() {
+        const user = forgotUser.value.trim();
+        const stored = localStorage.getItem(user);
+
+        if (!user) {
+            forgotMessage.textContent = "Please enter your username.";
+            forgotMessage.style.color = "red";
+            return;
+        }
+
+        if (stored) {
+            forgotMessage.textContent = "Your password is: " + stored;
+            forgotMessage.style.color = "green";
+        } else {
+            forgotMessage.textContent = "No account found with that username.";
+            forgotMessage.style.color = "red";
+        }
+    }
+
+    function fakeGoogleSignup() {
+        const googleUser = "google_user_" + Math.floor(Math.random() * 10000);
+        localStorage.setItem(googleUser, "google_account");
+        signupMessage.textContent = "Signed up with Google!";
+        signupMessage.style.color = "green";
+    }
+
+    function fakeGoogleLogin() {
+        loginPage.classList.add("hidden");
+        showSubjectPage();
+    }
+
+    function logout() {
+        showLogin();
+    }
+
+    // Question bank data
+    // Each subject gets its own large question list
+const mathsQuestions = [];
+mathsQuestions.push(
+    // 1–10 Algebra
+    { type:"mcq", q:"Solve: 4x − 7 = 29", options:["6","8","9","12"], answer:"9", hint:"Add 7 then divide by 4.", explain:"4x−7=29 → 4x=36 → x=9." },
+    { type:"short", q:"Expand: (3x − 2)(2x + 5)", answer:"6x^2 + 11x − 10", hint:"Use FOIL.", explain:"Multiply each term then simplify." },
+    { type:"mcq", q:"Factorise: x² − 9", options:["(x−9)(x+1)","(x−3)(x+3)","(x−1)(x+9)","(x−3)(x−3)"], answer:"(x−3)(x+3)", hint:"Difference of squares.", explain:"a²−b² = (a−b)(a+b)." },
+    { type:"short", q:"Solve: 2x + 3 = 17", answer:"7", hint:"Subtract 3 then divide by 2.", explain:"2x=14 → x=7." },
+    { type:"mcq", q:"Solve: 5x + 2 = 3x + 14", options:["4","6","8","10"], answer:"6", hint:"Collect x terms.", explain:"5x−3x=14−2 → 2x=12 → x=6." },
+    { type:"tf", q:"x² = 49 has two solutions.", answer:"True", hint:"Think ±.", explain:"x=7 or x=−7." },
+    { type:"short", q:"Simplify: 3x − 2y + 4x + y", answer:"7x − y", hint:"Collect like terms.", explain:"3x+4x=7x, −2y+y=−y." },
+    { type:"mcq", q:"Solve: x/3 = 7", options:["10","14","18","21"], answer:"21", hint:"Multiply both sides by 3.", explain:"x=21." },
+    { type:"fill", q:"Fill in: The gradient of y = 5x + 3 is ____.", answer:"5", hint:"Coefficient of x.", explain:"Gradient = 5." },
+    { type:"mcq", q:"Which is the solution to x² − 4x + 4 = 0?", options:["x=4","x=2","x=−2","x=0"], answer:"x=2", hint:"Perfect square.", explain:"(x−2)²=0 → x=2." },
+
+    // 11–20 Geometry
+    { type:"mcq", q:"Interior angles of a triangle sum to:", options:["90°","180°","270°","360°"], answer:"180°", hint:"Basic rule.", explain:"Triangle angles always total 180°." },
+    { type:"short", q:"Area of a circle with radius 7?", answer:"153.94", hint:"Use πr².", explain:"π×49 ≈ 153.94." },
+    { type:"mcq", q:"A right triangle has legs 6 and 8. Hypotenuse?", options:["10","12","14","8"], answer:"10", hint:"Use Pythagoras.", explain:"√(36+64)=√100=10." },
+    { type:"tf", q:"Opposite angles in a cyclic quadrilateral sum to 180°.", answer:"True", hint:"Circle rule.", explain:"Opposite angles are supplementary." },
+    { type:"short", q:"Volume of a cube with side 4?", answer:"64", hint:"Side³.", explain:"4³=64." },
+    { type:"mcq", q:"Angle in a semicircle is always:", options:["90°","45°","180°","60°"], answer:"90°", hint:"Thales theorem.", explain:"Angle in semicircle = right angle." },
+    { type:"fill", q:"Fill in: The sum of exterior angles of any polygon is ____.", answer:"360", hint:"Always same.", explain:"Exterior angles always total 360°." },
+    { type:"mcq", q:"A bearing is measured:", options:["Clockwise from North","Anti‑clockwise from North","Clockwise from East","Anti‑clockwise from South"], answer:"Clockwise from North", hint:"Standard definition.", explain:"Bearings always clockwise from North." },
+    { type:"short", q:"Find the missing angle: straight line = 180°, given 132°.", answer:"48°", hint:"Subtract.", explain:"180−132=48." },
+    { type:"tf", q:"Parallel lines have equal corresponding angles.", answer:"True", hint:"Z‑shape rule.", explain:"Corresponding angles are equal." },
+
+    // 21–30 Trigonometry
+    { type:"mcq", q:"sin(30°) =", options:["0.5","0.866","1","0"], answer:"0.5", hint:"Special angle.", explain:"sin30°=1/2." },
+    { type:"mcq", q:"cos(60°) =", options:["0.5","0.866","1","0"], answer:"0.5", hint:"Special angle.", explain:"cos60°=1/2." },
+    { type:"short", q:"tan(45°) =", answer:"1", hint:"Special angle.", explain:"tan45°=1." },
+    { type:"mcq", q:"Find opposite side: hyp=10, angle=30°.", options:["5","10","8.66","6"], answer:"5", hint:"sinθ=opp/hyp.", explain:"opp=10×0.5=5." },
+    { type:"tf", q:"SOH CAH TOA helps find missing sides.", answer:"True", hint:"Basic trig.", explain:"Used for right‑angle triangles." },
+    { type:"short", q:"Find hypotenuse: opp=12, angle=30°.", answer:"24", hint:"sinθ=opp/hyp.", explain:"hyp=12/0.5=24." },
+    { type:"mcq", q:"Which ratio is cos?", options:["opp/hyp","adj/hyp","opp/adj","hyp/adj"], answer:"adj/hyp", hint:"CAH.", explain:"cos=adj/hyp." },
+    { type:"fill", q:"Fill in: tanθ = ____ / adjacent.", answer:"opposite", hint:"TOA.", explain:"tan=opp/adj." },
+    { type:"mcq", q:"Find angle: sinθ=0.866.", options:["30°","45°","60°","90°"], answer:"60°", hint:"Special angle.", explain:"sin60°≈0.866." },
+    { type:"short", q:"Find adjacent: hyp=15, angle=60°.", answer:"7.5", hint:"cosθ=adj/hyp.", explain:"adj=15×0.5=7.5." },
+
+    // 31–40 Probability & Statistics
+    { type:"mcq", q:"Mean of 4, 6, 10, 10?", options:["6","7.5","8","9"], answer:"7.5", hint:"Add then divide.", explain:"Sum=30 → 30/4=7.5." },
+    { type:"short", q:"Median of 3, 9, 1, 7, 5?", answer:"5", hint:"Order them.", explain:"Ordered:1,3,5,7,9 → median=5." },
+    { type:"mcq", q:"Probability of rolling a 6 on a fair die?", options:["1/2","1/3","1/6","1/12"], answer:"1/6", hint:"One outcome out of six.", explain:"1/6." },
+    { type:"tf", q:"Mode is the most frequent value.", answer:"True", hint:"Definition.", explain:"Mode = most common." },
+    { type:"short", q:"Range of 2, 8, 11, 15?", answer:"13", hint:"Max−min.", explain:"15−2=13." },
+    { type:"mcq", q:"A bag has 3 red, 2 blue. P(red)?", options:["3/5","2/5","1/5","4/5"], answer:"3/5", hint:"Total=5.", explain:"3/5." },
+    { type:"fill", q:"Fill in: The sum of probabilities in an experiment is ____.", answer:"1", hint:"Always.", explain:"Probabilities total 1." },
+    { type:"mcq", q:"Mean of 12, 15, 18?", options:["15","16","17","18"], answer:"15", hint:"Sum=45.", explain:"45/3=15." },
+    { type:"short", q:"Probability of heads on fair coin?", answer:"0.5", hint:"Two outcomes.", explain:"1/2." },
+    { type:"tf", q:"Median is affected by outliers.", answer:"False", hint:"Robust measure.", explain:"Median is stable even with outliers." },
+
+    // 41–50 Number
+    { type:"mcq", q:"Simplify: 48 ÷ 6 × 2", options:["8","16","4","12"], answer:"16", hint:"Left to right.", explain:"48÷6=8 → 8×2=16." },
+    { type:"short", q:"Find 20% of 150.", answer:"30", hint:"Divide by 5.", explain:"150×0.2=30." },
+    { type:"mcq", q:"Which is a prime number?", options:["21","33","37","49"], answer:"37", hint:"Check divisibility.", explain:"37 is prime." },
+    { type:"tf", q:"0.75 = 3/4.", answer:"True", hint:"Convert.", explain:"0.75=75/100=3/4." },
+    { type:"short", q:"Write 0.125 as a fraction.", answer:"1/8", hint:"Think powers of 2.", explain:"0.125=1/8." },
+    { type:"mcq", q:"LCM of 4 and 6?", options:["6","12","24","18"], answer:"12", hint:"Multiples.", explain:"12 is smallest common multiple." },
+    { type:"fill", q:"Fill in: √144 = ____.", answer:"12", hint:"Square root.", explain:"12×12=144." },
+    { type:"mcq", q:"HCF of 18 and 24?", options:["6","12","3","9"], answer:"6", hint:"Common factors.", explain:"6 is highest common factor." },
+    { type:"short", q:"Convert 2.5 to a fraction.", answer:"5/2", hint:"Mixed number.", explain:"2.5=5/2." },
+    { type:"tf", q:"Negative × negative = positive.", answer:"True", hint:"Sign rules.", explain:"Two negatives multiply to positive." },
+
+    // 51–60 Ratio & Proportion
+    { type:"mcq", q:"Simplify ratio 12:18.", options:["2:3","3:2","4:6","6:9"], answer:"2:3", hint:"Divide both by 6.", explain:"12÷6=2, 18÷6=3." },
+    { type:"short", q:"Share £90 in ratio 2:1.", answer:"£60 and £30", hint:"Total parts=3.", explain:"2/3 of 90=60, 1/3=30." },
+    { type:"mcq", q:"Scale factor from 4cm to 10cm?", options:["2.5","1.5","3","4"], answer:"2.5", hint:"10÷4.", explain:"Scale factor=2.5." },
+    { type:"tf", q:"Direct proportion means y increases as x increases.", answer:"True", hint:"Same direction.", explain:"Direct proportion = same direction change." },
+    { type:"short", q:"Increase 80 by 15%.", answer:"92", hint:"Find 15% then add.", explain:"80×0.15=12 → 80+12=92." },
+    { type:"mcq", q:"Decrease 200 by 20%.", options:["160","180","150","140"], answer:"160", hint:"20% of 200=40.", explain:"200−40=160." },
+    { type:"fill", q:"Fill in: In proportion, a:b = c:____.", answer:"d", hint:"Standard form.", explain:"a:b=c:d." },
+    { type:"mcq", q:"Convert 3 hours to minutes.", options:["120","150","180","210"], answer:"180", hint:"×60.", explain:"3×60=180." },
+    { type:"short", q:"Find 30% of 250.", answer:"75", hint:"0.3×250.", explain:"75." },
+    { type:"tf", q:"Inverse proportion means y decreases as x increases.", answer:"True", hint:"Opposite direction.", explain:"Inverse proportion = opposite change." },
+
+    // 61–70 Sequences
+    { type:"mcq", q:"Next term: 3, 7, 11, 15...", options:["17","19","21","23"], answer:"19", hint:"Add 4.", explain:"Sequence increases by 4." },
+    { type:"short", q:"nth term of 5, 8, 11, 14...", answer:"3n + 2", hint:"Difference=3.", explain:"First term=5 → 3n+2." },
+    { type:"mcq", q:"Is 12 in sequence 2n + 4?", options:["Yes","No"], answer:"Yes", hint:"Solve 2n+4=12.", explain:"2n=8 → n=4." },
+    { type:"tf", q:"Quadratic sequences have constant second differences.", answer:"True", hint:"Definition.", explain:"Second difference constant." },
+    { type:"short", q:"Find 10th term of 4n − 1.", answer:"39", hint:"Substitute n=10.", explain:"4×10−1=39." },
+    { type:"mcq", q:"Next term: 2, 6, 18, 54...", options:["108","162","216","324"], answer:"162", hint:"×3.", explain:"Multiply by 3." },
+    { type:"fill", q:"Fill in: A linear sequence has a constant ____.", answer:"difference", hint:"Step size.", explain:"Constant difference." },
+    { type:"mcq", q:"nth term of 10, 7, 4, 1...", options:["3n+10","10−3n","10−n","n−10"], answer:"10−3n", hint:"Difference=−3.", explain:"10−3n." },
+    { type:"short", q:"Find 6th term of n² + 1.", answer:"37", hint:"6²+1.", explain:"36+1=37." },
+    { type:"tf", q:"Geometric sequences multiply by a constant.", answer:"True", hint:"Definition.", explain:"Multiply by same number." },
+
+    // 71–80 Graphs
+    { type:"mcq", q:"Gradient of line through (1,2) and (4,8)?", options:["2","3","4","6"], answer:"2", hint:"Change in y / change in x.", explain:"(8−2)/(4−1)=6/3=2." },
+    { type:"short", q:"y = 3x + 7. What is y when x=5?", answer:"22", hint:"Substitute.", explain:"3×5+7=22." },
+    { type:"mcq", q:"Which graph is a quadratic?", options:["Straight line","U‑shape","Circle","Zig‑zag"], answer:"U‑shape", hint:"Parabola.", explain:"Quadratic = U‑shape." },
+    { type:"tf", q:"A positive gradient slopes upwards.", answer:"True", hint:"Left to right.", explain:"Positive gradient rises." },
+    { type:"short", q:"Find y‑intercept of y=4x−9.", answer:"−9", hint:"Constant term.", explain:"Intercept=c." },
+    { type:"mcq", q:"Which is a cubic?", options:["y=x²","y=x³","y=1/x","y=√x"], answer:"y=x³", hint:"Power 3.", explain:"Cubic has x³." },
+    { type:"fill", q:"Fill in: A horizontal line has gradient ____.", answer:"0", hint:"Flat.", explain:"Gradient=0." },
+);
+const englishQuestions = [];
+englishQuestions.push(
+    // 1–10 Language Analysis
+    { type:"mcq", q:"Which device is used: 'The sky wept with rain'?", options:["Simile","Metaphor","Personification","Hyperbole"], answer:"Personification", hint:"Is the sky acting human?", explain:"Weeping is a human action → personification." },
+    { type:"short", q:"Define 'metaphor'.", answer:"A comparison saying one thing is another", hint:"Not using like/as.", explain:"Metaphor directly states one thing is another." },
+    { type:"tf", q:"A simile always uses 'like' or 'as'.", answer:"True", hint:"Think comparisons.", explain:"Similes compare using 'like' or 'as'." },
+    { type:"fill", q:"Fill in: The writer uses ____ to create tension.", answer:"language", hint:"Common exam phrase.", explain:"Writers use language choices to create tension." },
+    { type:"mcq", q:"Which is an example of alliteration?", options:["Cold and dark","Bright as the sun","Whispering winds","Peter picked peppers"], answer:"Peter picked peppers", hint:"Repeated consonant.", explain:"Alliteration repeats initial consonant sounds." },
+    { type:"short", q:"What does 'semantic field' mean?", answer:"A group of related words", hint:"Think themes.", explain:"Semantic field = words linked by meaning." },
+    { type:"mcq", q:"Which device exaggerates for effect?", options:["Metaphor","Hyperbole","Irony","Oxymoron"], answer:"Hyperbole", hint:"Over-the-top.", explain:"Hyperbole = deliberate exaggeration." },
+    { type:"tf", q:"Irony means the opposite of what is said.", answer:"True", hint:"Sarcasm is a form.", explain:"Irony expresses meaning opposite to words." },
+    { type:"fill", q:"Fill in: A ____ is a phrase that has an implied meaning beyond its literal one.", answer:"idiom", hint:"Common expressions.", explain:"Idioms have figurative meanings." },
+    { type:"short", q:"Define 'oxymoron'.", answer:"Two contradictory words together", hint:"Jumbo shrimp.", explain:"Oxymoron pairs opposites for effect." },
+
+    // 11–20 Structure Analysis
+    { type:"mcq", q:"What is the effect of a short sentence?", options:["Slows pace","Creates tension","Adds detail","Shows confusion"], answer:"Creates tension", hint:"Fast impact.", explain:"Short sentences increase pace and tension." },
+    { type:"short", q:"Define 'juxtaposition'.", answer:"Placing two contrasting ideas together", hint:"Contrast.", explain:"Juxtaposition highlights differences." },
+    { type:"tf", q:"A cyclical structure ends where it begins.", answer:"True", hint:"Circle.", explain:"Cyclical structure repeats opening ideas." },
+    { type:"fill", q:"Fill in: A shift in ____ can change the mood of a text.", answer:"tone", hint:"Writer's attitude.", explain:"Tone shifts affect mood." },
+    { type:"mcq", q:"What does a cliffhanger do?", options:["Ends story","Creates suspense","Explains plot","Slows pace"], answer:"Creates suspense", hint:"Unresolved ending.", explain:"Cliffhangers leave tension unresolved." },
+    { type:"short", q:"Define 'narrative perspective'.", answer:"The viewpoint the story is told from", hint:"First/third person.", explain:"Perspective shapes reader understanding." },
+    { type:"mcq", q:"Which is a structural feature?", options:["Metaphor","Simile","Paragraphing","Alliteration"], answer:"Paragraphing", hint:"Organisation.", explain:"Structure = organisation of text." },
+    { type:"tf", q:"Flashbacks move the narrative forward in time.", answer:"False", hint:"Backward.", explain:"Flashbacks revisit earlier events." },
+    { type:"fill", q:"Fill in: A ____ sentence adds detail and complexity.", answer:"complex", hint:"Multiple clauses.", explain:"Complex sentences contain subordinate clauses." },
+    { type:"short", q:"Define 'foreshadowing'.", answer:"Hinting at future events", hint:"Clues.", explain:"Foreshadowing builds anticipation." },
+
+    // 21–30 Writer’s Intent
+    { type:"mcq", q:"What is the writer’s purpose if they aim to persuade?", options:["Entertain","Inform","Convince","Describe"], answer:"Convince", hint:"Change opinion.", explain:"Persuasive writing aims to convince." },
+    { type:"short", q:"Define 'bias'.", answer:"A one-sided viewpoint", hint:"Not neutral.", explain:"Bias favours one perspective." },
+    { type:"tf", q:"Informative writing aims to entertain.", answer:"False", hint:"Different purpose.", explain:"Informative writing provides facts." },
+    { type:"fill", q:"Fill in: Writers use ____ to influence the reader’s emotions.", answer:"language", hint:"Emotive.", explain:"Language choices shape emotion." },
+    { type:"mcq", q:"Which tone is used to show anger?", options:["Calm","Hostile","Joyful","Neutral"], answer:"Hostile", hint:"Negative emotion.", explain:"Hostile tone conveys anger." },
+    { type:"short", q:"Define 'emotive language'.", answer:"Words that create strong feelings", hint:"Emotion.", explain:"Emotive language influences reader emotions." },
+    { type:"mcq", q:"Which purpose fits a travel brochure?", options:["Persuade","Describe","Inform","All of these"], answer:"All of these", hint:"Mixed purpose.", explain:"Travel brochures inform, describe, and persuade." },
+    { type:"tf", q:"A writer’s viewpoint is their opinion.", answer:"True", hint:"Perspective.", explain:"Viewpoint = opinion." },
+    { type:"fill", q:"Fill in: A writer may use ____ questions to engage the reader.", answer:"rhetorical", hint:"Not answered.", explain:"Rhetorical questions provoke thought." },
+    { type:"short", q:"Define 'tone'.", answer:"The writer’s attitude", hint:"Mood.", explain:"Tone shows how the writer feels." },
+
+    // 31–40 Reading Comprehension
+    { type:"mcq", q:"What does 'implicit' mean?", options:["Obvious","Suggested","Stated","Incorrect"], answer:"Suggested", hint:"Not stated.", explain:"Implicit = implied meaning." },
+    { type:"short", q:"Define 'explicit'.", answer:"Clearly stated", hint:"Opposite of implicit.", explain:"Explicit = directly expressed." },
+    { type:"tf", q:"Inference requires using clues to reach conclusions.", answer:"True", hint:"Detective work.", explain:"Inference = reading between the lines." },
+    { type:"fill", q:"Fill in: A ____ is a short summary of key points.", answer:"synopsis", hint:"Overview.", explain:"Synopsis summarises main ideas." },
+    { type:"mcq", q:"Which question type asks for evidence?", options:["How","Why","Where","Quote"], answer:"Quote", hint:"Text support.", explain:"Quote questions require textual evidence." },
+    { type:"short", q:"Define 'theme'.", answer:"The main idea or message", hint:"Underlying.", explain:"Theme is the central message." },
+    { type:"mcq", q:"Which is a theme?", options:["Chair","Love","Car","Window"], answer:"Love", hint:"Abstract.", explain:"Themes are abstract ideas." },
+    { type:"tf", q:"Context refers to the time and place a text was written.", answer:"True", hint:"Background.", explain:"Context shapes meaning." },
+    { type:"fill", q:"Fill in: A ____ question asks you to compare texts.", answer:"comparison", hint:"Two texts.", explain:"Comparison questions analyse similarities/differences." },
+    { type:"short", q:"Define 'quotation'.", answer:"Exact words from the text", hint:"Evidence.", explain:"Quotations support analysis." },
+
+    // 41–50 Creative Writing Techniques
+    { type:"mcq", q:"Which opening creates tension?", options:["Calm morning","Storm approaching","Sunny day","Quiet room"], answer:"Storm approaching", hint:"Conflict.", explain:"Storms create tension." },
+    { type:"short", q:"Define 'imagery'.", answer:"Descriptive language appealing to senses", hint:"Picture.", explain:"Imagery creates vivid pictures." },
+    { type:"tf", q:"Dialogue can reveal character personality.", answer:"True", hint:"Speech.", explain:"Dialogue shows traits." },
+    { type:"fill", q:"Fill in: A ____ ending leaves the reader thinking.", answer:"reflective", hint:"Thoughtful.", explain:"Reflective endings provoke thought." },
+    { type:"mcq", q:"Which is a good descriptive detail?", options:["It was nice.","It was okay.","The air smelled of salt.","I liked it."], answer:"The air smelled of salt.", hint:"Sensory.", explain:"Sensory detail enhances description." },
+    { type:"short", q:"Define 'pathetic fallacy'.", answer:"Weather reflecting emotion", hint:"Stormy sadness.", explain:"Weather mirrors mood." },
+    { type:"mcq", q:"Which sentence builds suspense?", options:["He walked slowly.","He sprinted.","He froze as the door creaked.","He laughed loudly."], answer:"He froze as the door creaked.", hint:"Uncertainty.", explain:"Suspense comes from tension." },
+    { type:"tf", q:"Adverbs can modify verbs.", answer:"True", hint:"Grammar.", explain:"Adverbs describe verbs." },
+    { type:"fill", q:"Fill in: A ____ is a comparison using 'like' or 'as'.", answer:"simile", hint:"Comparison.", explain:"Simile uses like/as." },
+    { type:"short", q:"Define 'symbolism'.", answer:"Using objects to represent ideas", hint:"Deeper meaning.", explain:"Symbols convey themes." },
+
+    // 51–60 Grammar & Syntax
+    { type:"mcq", q:"Which is a subordinate clause?", options:["I ran.","Because it was raining","The sun shone.","They left."], answer:"Because it was raining", hint:"Depends on main clause.", explain:"Subordinate clauses cannot stand alone." },
+    { type:"short", q:"Define 'noun'.", answer:"A naming word", hint:"Person/place/thing.", explain:"Nouns name things." },
+    { type:"tf", q:"A verb is an action or state.", answer:"True", hint:"Doing.", explain:"Verbs show actions or states." },
+    { type:"fill", q:"Fill in: An ____ is a describing word.", answer:"adjective", hint:"Describes nouns.", explain:"Adjectives describe nouns." },
+    { type:"mcq", q:"Which is a compound sentence?", options:["I ran.","I ran and I fell.","Running fast.","Because I ran."], answer:"I ran and I fell.", hint:"Two clauses.", explain:"Compound sentences join two main clauses." },
+    { type:"short", q:"Define 'adverb'.", answer:"A word that modifies a verb", hint:"How/when.", explain:"Adverbs describe actions." },
+    { type:"mcq", q:"Which is a preposition?", options:["Run","Blue","Under","Quickly"], answer:"Under", hint:"Position.", explain:"Prepositions show position/time." },
+    { type:"tf", q:"A comma splice is correct grammar.", answer:"False", hint:"Incorrect.", explain:"Comma splices incorrectly join clauses." },
+    { type:"fill", q:"Fill in: A ____ shows ownership.", answer:"apostrophe", hint:"Possession.", explain:"Apostrophes show possession." },
+    { type:"short", q:"Define 'conjunction'.", answer:"A word joining clauses", hint:"And/but.", explain:"Conjunctions link ideas." },
+
+    // 61–70 Literature Concepts
+    { type:"mcq", q:"Which is a theme in 'Macbeth'?", options:["Friendship","Ambition","Peace","Comedy"], answer:"Ambition", hint:"Macbeth’s flaw.", explain:"Ambition drives Macbeth’s downfall." },
+    { type:"short", q:"Define 'tragic hero'.", answer:"A hero with a fatal flaw", hint:"Hamartia.", explain:"Tragic heroes fall due to flaws." },
+    { type:"tf", q:"A motif is a recurring element.", answer:"True", hint:"Repetition.", explain:"Motifs repeat to reinforce themes." },
+    { type:"fill", q:"Fill in: A ____ is a character who contrasts with another.", answer:"foil", hint:"Opposite.", explain:"Foils highlight differences." },
+    { type:"mcq", q:"Which is a symbol in 'An Inspector Calls'?", options:["The ring","The inspector","The weather","The house"], answer:"The inspector", hint:"Moral force.", explain:"Inspector symbolises social responsibility." },
+    { type:"short", q:"Define 'dramatic irony'.", answer:"Audience knows more than characters", hint:"Tension.", explain:"Creates suspense." },
+    { type:"mcq", q:"Which theme fits 'A Christmas Carol'?", options:["Greed","Revenge","Isolation","Transformation"], answer:"Transformation", hint:"Scrooge changes.", explain:"Scrooge transforms morally." },
+    { type:"tf", q:"Poetic structure affects meaning.", answer:"True", hint:"Form matters.", explain:"Structure shapes interpretation." },
+    { type:"fill", q:"Fill in: A ____ is a comparison without using like or as.", answer:"metaphor", hint:"Direct.", explain:"Metaphor states one thing is another." },
+    { type:"short", q:"Define 'stanza'.", answer:"A group of lines in a poem", hint:"Poetry.", explain:"Stanzas organise poems." },
+
+    // 71–80 Non‑Fiction Analysis
+    { type:"mcq", q:"Which tone suits a formal letter?", options:["Chatty","Serious","Sarcastic","Humorous"], answer:"Serious", hint:"Professional.", explain:"Formal letters use serious tone." },
+    { type:"short", q:"Define 'persuasive technique'.", answer:"Method used to convince reader", hint:"Rhetoric.", explain:"Persuasive techniques influence opinions." },
+    { type:"tf", q:"Statistics can be used to persuade.", answer:"True", hint:"Evidence.", explain:"Numbers strengthen arguments." },
+    { type:"fill", q:"Fill in: A ____ is used to compare two viewpoints.", answer:"contrast", hint:"Differences.", explain:"Contrast highlights differences." },
+    { type:"mcq", q:"Which is a rhetorical device?", options:["Metaphor","Simile","Repetition","Alliteration"], answer:"Repetition", hint:"Emphasis.", explain:"Repetition reinforces ideas." },
+    { type:"short", q:"Define 'formal register'.", answer:"Professional language style", hint:"Not casual.", explain:"Formal register suits official contexts." },
+    { type:"mcq", q:"Which phrase is persuasive?", options:["Maybe it's okay.","You must act now.","I guess so.","It might help."], answer:"You must act now.", hint:"Urgency.", explain:"Urgent language persuades." },
+    { type:"tf", q:"Non‑fiction texts can include bias.", answer:"True", hint:"Opinion.", explain:"Writers may show bias." },
+    { type:"fill", q:"Fill in: A ____ is a short, personal story used to illustrate a point.", answer:"anecdote", hint:"Story.", explain:"Anecdotes support arguments." },
+    { type:"short", q:"Define 'headline'.", answer:"Title of an article", hint:"Top.", explain:"Headlines summarise main idea." },
+
+    // 81–90 Exam Skills
+    { type:"mcq", q:"What should you include in a comparison answer?", options:["Quotes","Techniques","Similarities/differences","All of these"], answer:"All of these", hint:"Full analysis.", explain:"Comparison needs evidence and analysis." },
+    { type:"short", q:"Define 'evaluation'.", answer:"Judging effectiveness", hint:"Opinion + evidence.", explain:"Evaluation assesses impact." },
+    { type:"tf", q:"You should always support points with evidence.", answer:"True", hint:"Quotes.", explain:"Evidence strengthens arguments." },
+    { type:"fill", q:"Fill in: A ____ paragraph contains point, evidence, explanation.", answer:"PEE", hint:"Structure.", explain:"PEE = Point, Evidence, Explanation." },
+    { type:"mcq", q:"Which is a good exam strategy?", options:["Write everything","Plan first","Skip planning","Ignore question"], answer:"Plan first", hint:"Organisation.", explain:"Planning improves clarity." },
+    { type:"short", q:"Define 'analysis'.", answer:"Explaining how something works", hint:"Break down.", explain:"Analysis examines effects." },
+    { type:"mcq", q:"Which improves clarity?", options:["Long sentences","Short paragraphs","No punctuation","Random ideas"], answer:"Short paragraphs", hint:"Structure.", explain:"Short paragraphs aid readability." },
+    { type:"tf", q:"You should address the question directly.", answer:"True", hint:"Focus.", explain:"Stay relevant." },
+    { type:"fill", q:"Fill in: A strong conclusion ____ your main points.", answer:"summarises", hint:"End.", explain:"Conclusions summarise arguments." },
+    { type:"short", q:"Define 'cohesion'.", answer:"How well ideas link together", hint:"Flow.", explain:"Cohesion improves flow." },
+
+    // 91–100 Advanced Language & Literature
+    { type:"mcq", q:"Which is a complex sentence?", options:["I ran.","I ran because I was late.","Running fast.","Late again."], answer:"I ran because I was late.", hint:"Subordinate clause.", explain:"Complex sentences include subordinate clauses." },
+    { type:"short", q:"Define 'connotation'.", answer:"Suggested meaning of a word", hint:"Beyond literal.", explain:"Connotations add depth." },
+    { type:"tf", q:"A theme must be stated explicitly.", answer:"False", hint:"Often implied.", explain:"Themes are often implied." },
+);
+
+    
+const biologyQuestions = [];
+biologyQuestions.push(
+    // 1–10 Cell Biology
+    { type:"mcq", q:"Which organelle controls the activities of the cell?", options:["Mitochondrion","Nucleus","Ribosome","Chloroplast"], answer:"Nucleus", hint:"Contains genetic material.", explain:"The nucleus stores DNA and controls cell activities." },
+    { type:"short", q:"Define 'mitosis'.", answer:"Cell division producing two identical daughter cells", hint:"Growth and repair.", explain:"Mitosis creates genetically identical cells." },
+    { type:"tf", q:"Ribosomes are the site of protein synthesis.", answer:"True", hint:"Think proteins.", explain:"Ribosomes build proteins from amino acids." },
+    { type:"fill", q:"Fill in: The cell membrane is described as ____ permeable.", answer:"partially", hint:"Not fully.", explain:"It is partially (selectively) permeable." },
+    { type:"mcq", q:"Which structure is found in plant cells but not animal cells?", options:["Nucleus","Cell wall","Mitochondria","Ribosomes"], answer:"Cell wall", hint:"Provides support.", explain:"Plant cells have a rigid cell wall." },
+    { type:"short", q:"Define 'diffusion'.", answer:"Movement of particles from high to low concentration", hint:"Passive process.", explain:"Diffusion is down a concentration gradient." },
+    { type:"tf", q:"Mitochondria are where aerobic respiration occurs.", answer:"True", hint:"Powerhouse.", explain:"They release energy via respiration." },
+    { type:"fill", q:"Fill in: The liquid inside cells is called ____.", answer:"cytoplasm", hint:"Jelly‑like.", explain:"Cytoplasm contains organelles and reactions." },
+    { type:"mcq", q:"Which cell type has no nucleus?", options:["Red blood cell","White blood cell","Muscle cell","Nerve cell"], answer:"Red blood cell", hint:"More space for haemoglobin.", explain:"Red blood cells lose their nucleus." },
+    { type:"short", q:"Define 'specialised cell'.", answer:"A cell adapted for a particular function", hint:"Specific role.", explain:"Specialised cells have unique structures." },
+
+    // 11–20 Transport & Osmosis
+    { type:"mcq", q:"Osmosis is:", options:["Movement of solutes","Movement of water","Movement of gases","Movement of proteins"], answer:"Movement of water", hint:"Across membrane.", explain:"Osmosis is diffusion of water." },
+    { type:"short", q:"State the direction of water movement in osmosis.", answer:"From high to low water concentration through a partially permeable membrane", hint:"Dilute to concentrated.", explain:"Water moves down its concentration gradient." },
+    { type:"tf", q:"Active transport requires energy.", answer:"True", hint:"Against gradient.", explain:"It uses ATP to move substances." },
+    { type:"fill", q:"Fill in: In plants, water enters root hair cells by ____.", answer:"osmosis", hint:"Water movement.", explain:"Water moves into roots via osmosis." },
+    { type:"mcq", q:"Which process moves ions against their concentration gradient?", options:["Diffusion","Osmosis","Active transport","Facilitated diffusion"], answer:"Active transport", hint:"Requires energy.", explain:"Active transport uses carrier proteins and ATP." },
+    { type:"short", q:"Define 'concentration gradient'.", answer:"Difference in concentration between two areas", hint:"High vs low.", explain:"Particles move down this gradient." },
+    { type:"tf", q:"Diffusion is a passive process.", answer:"True", hint:"No energy.", explain:"It does not require ATP." },
+    { type:"fill", q:"Fill in: In the small intestine, glucose is absorbed by ____ transport.", answer:"active", hint:"Against gradient.", explain:"Glucose is moved into blood via active transport." },
+    { type:"mcq", q:"Which factor increases rate of diffusion?", options:["Smaller surface area","Lower temperature","Greater distance","Higher temperature"], answer:"Higher temperature", hint:"More kinetic energy.", explain:"Particles move faster at higher temperatures." },
+    { type:"short", q:"Define 'partially permeable membrane'.", answer:"A membrane that allows some substances through but not others", hint:"Selective.", explain:"It controls movement of molecules." },
+
+    // 21–30 Organisation & Tissues
+    { type:"mcq", q:"Which is the correct order of organisation?", options:["Organ → cell → tissue → organism","Cell → tissue → organ → organism","Tissue → cell → organ → organism","Organism → organ → tissue → cell"], answer:"Cell → tissue → organ → organism", hint:"Smallest first.", explain:"Cells form tissues, tissues form organs." },
+    { type:"short", q:"Define 'tissue'.", answer:"A group of similar cells working together", hint:"Same function.", explain:"Tissues perform specific roles." },
+    { type:"tf", q:"The heart is an organ.", answer:"True", hint:"Made of tissues.", explain:"It contains muscle, nerve and other tissues." },
+    { type:"fill", q:"Fill in: The lungs are part of the ____ system.", answer:"respiratory", hint:"Breathing.", explain:"They enable gas exchange." },
+    { type:"mcq", q:"Which tissue contracts to cause movement?", options:["Epithelial","Muscle","Nervous","Connective"], answer:"Muscle", hint:"Movement.", explain:"Muscle tissue contracts." },
+    { type:"short", q:"Define 'organ system'.", answer:"A group of organs working together", hint:"Complex functions.", explain:"Systems carry out major body processes." },
+    { type:"tf", q:"The stomach is part of the circulatory system.", answer:"False", hint:"Digestion.", explain:"It belongs to the digestive system." },
+    { type:"fill", q:"Fill in: Blood is an example of a ____ tissue.", answer:"connective", hint:"Links structures.", explain:"Blood transports substances." },
+    { type:"mcq", q:"Which organ pumps blood around the body?", options:["Lungs","Brain","Heart","Kidneys"], answer:"Heart", hint:"Circulation.", explain:"The heart contracts to move blood." },
+    { type:"short", q:"Define 'organ'.", answer:"A structure made of different tissues working together", hint:"Complex unit.", explain:"Organs perform specific functions." },
+
+    // 31–40 Enzymes & Digestion
+    { type:"mcq", q:"What is the optimum temperature for most human enzymes?", options:["25°C","37°C","50°C","60°C"], answer:"37°C", hint:"Body temperature.", explain:"Human enzymes work best at 37°C." },
+    { type:"short", q:"Define 'enzyme'.", answer:"A biological catalyst", hint:"Speeds reactions.", explain:"Enzymes lower activation energy." },
+    { type:"tf", q:"Enzymes are made of proteins.", answer:"True", hint:"Macromolecules.", explain:"They are protein molecules." },
+    { type:"fill", q:"Fill in: The enzyme that breaks down starch is called ____.", answer:"amylase", hint:"Saliva.", explain:"Amylase digests starch to sugars." },
+    { type:"mcq", q:"Where is bile produced?", options:["Stomach","Pancreas","Liver","Gall bladder"], answer:"Liver", hint:"Largest organ.", explain:"Bile is made in the liver." },
+    { type:"short", q:"State one function of bile.", answer:"Emulsifies fats or neutralises stomach acid", hint:"Digestive aid.", explain:"It breaks fat into droplets and raises pH." },
+    { type:"tf", q:"High temperatures can denature enzymes.", answer:"True", hint:"Shape change.", explain:"Active site shape is altered." },
+    { type:"fill", q:"Fill in: Proteins are broken down by ____.", answer:"protease", hint:"Enzyme type.", explain:"Proteases digest proteins." },
+    { type:"mcq", q:"Where are villi found?", options:["Stomach","Small intestine","Large intestine","Oesophagus"], answer:"Small intestine", hint:"Absorption.", explain:"Villi increase surface area for absorption." },
+    { type:"short", q:"Define 'denatured enzyme'.", answer:"An enzyme whose active site has changed shape", hint:"No longer works.", explain:"Substrate can no longer bind." },
+
+    // 41–50 Respiration & Circulation
+    { type:"mcq", q:"Which equation represents aerobic respiration?", options:["Glucose → lactic acid","Glucose + oxygen → carbon dioxide + water","Glucose → ethanol + carbon dioxide","Oxygen → water"], answer:"Glucose + oxygen → carbon dioxide + water", hint:"Complete breakdown.", explain:"Aerobic respiration uses oxygen." },
+    { type:"short", q:"Define 'respiration'.", answer:"Release of energy from glucose", hint:"Not breathing.", explain:"Respiration is a chemical process." },
+    { type:"tf", q:"Anaerobic respiration releases less energy than aerobic respiration.", answer:"True", hint:"Incomplete breakdown.", explain:"Glucose is not fully oxidised." },
+    { type:"fill", q:"Fill in: The main gas carried by red blood cells is ____.", answer:"oxygen", hint:"Haemoglobin.", explain:"Oxygen binds to haemoglobin." },
+    { type:"mcq", q:"Which blood vessel carries blood away from the heart?", options:["Vein","Artery","Capillary","Venule"], answer:"Artery", hint:"High pressure.", explain:"Arteries carry blood from the heart." },
+    { type:"short", q:"Define 'double circulatory system'.", answer:"Blood passes through the heart twice per circuit", hint:"Two loops.", explain:"Pulmonary and systemic circuits." },
+    { type:"tf", q:"Capillaries have thin walls for diffusion.", answer:"True", hint:"Exchange.", explain:"Thin walls allow efficient exchange." },
+    { type:"fill", q:"Fill in: The pigment in red blood cells is called ____.", answer:"haemoglobin", hint:"Binds oxygen.", explain:"Haemoglobin carries oxygen." },
+    { type:"mcq", q:"Which component of blood helps clotting?", options:["Plasma","Red cells","White cells","Platelets"], answer:"Platelets", hint:"Clots.", explain:"Platelets form clots to prevent bleeding." },
+    { type:"short", q:"Define 'heart rate'.", answer:"Number of beats per minute", hint:"Pulse.", explain:"Measured in beats per minute." },
+
+    // 51–60 Photosynthesis & Plants
+    { type:"mcq", q:"Which organelle carries out photosynthesis?", options:["Mitochondrion","Chloroplast","Nucleus","Ribosome"], answer:"Chloroplast", hint:"Contains chlorophyll.", explain:"Chloroplasts absorb light energy." },
+    { type:"short", q:"Write the word equation for photosynthesis.", answer:"Carbon dioxide + water → glucose + oxygen", hint:"Inputs and outputs.", explain:"Requires light and chlorophyll." },
+    { type:"tf", q:"Photosynthesis is an endothermic reaction.", answer:"True", hint:"Energy taken in.", explain:"It absorbs light energy." },
+    { type:"fill", q:"Fill in: The green pigment in leaves is called ____.", answer:"chlorophyll", hint:"Absorbs light.", explain:"Chlorophyll is in chloroplasts." },
+    { type:"mcq", q:"Which factor does NOT affect photosynthesis?", options:["Light intensity","Carbon dioxide concentration","Temperature","Sound"], answer:"Sound", hint:"Think conditions.", explain:"Sound has no effect." },
+    { type:"short", q:"Define 'limiting factor'.", answer:"A factor that restricts the rate of a process", hint:"Bottleneck.", explain:"When increased, rate rises until another factor limits." },
+    { type:"tf", q:"Stomata allow gas exchange in leaves.", answer:"True", hint:"Pores.", explain:"They open and close to control gases." },
+    { type:"fill", q:"Fill in: Water is transported in plants through ____.", answer:"xylem", hint:"Vessels.", explain:"Xylem carries water and minerals." },
+    { type:"mcq", q:"Which tissue transports sugars?", options:["Xylem","Phloem","Epidermis","Meristem"], answer:"Phloem", hint:"Translocation.", explain:"Phloem moves sugars from leaves." },
+    { type:"short", q:"Define 'transpiration'.", answer:"Loss of water vapour from leaves", hint:"Through stomata.", explain:"Water evaporates and diffuses out." },
+
+    // 61–70 Infection & Immunity
+    { type:"mcq", q:"Which pathogen causes malaria?", options:["Virus","Bacterium","Protist","Fungus"], answer:"Protist", hint:"Mosquito vector.", explain:"Malaria is caused by Plasmodium." },
+    { type:"short", q:"Define 'pathogen'.", answer:"A microorganism that causes disease", hint:"Harmful.", explain:"Includes bacteria, viruses, fungi, protists." },
+    { type:"tf", q:"Vaccination introduces a small amount of antigen.", answer:"True", hint:"Triggers response.", explain:"It stimulates immune memory." },
+    { type:"fill", q:"Fill in: White blood cells produce ____ to fight pathogens.", answer:"antibodies", hint:"Specific proteins.", explain:"Antibodies bind to antigens." },
+    { type:"mcq", q:"Which disease is caused by a virus?", options:["Salmonella","Measles","Rose black spot","Athlete’s foot"], answer:"Measles", hint:"Highly infectious.", explain:"Measles is viral." },
+    { type:"short", q:"Define 'antigen'.", answer:"A molecule on a pathogen that triggers an immune response", hint:"Recognised by antibodies.", explain:"Antigens are foreign markers." },
+    { type:"tf", q:"Antibiotics kill viruses.", answer:"False", hint:"Only bacteria.", explain:"They do not work on viruses." },
+    { type:"fill", q:"Fill in: HIV can lead to ____ if untreated.", answer:"AIDS", hint:"Immune deficiency.", explain:"AIDS is caused by HIV." },
+    { type:"mcq", q:"Which method reduces spread of communicable diseases?", options:["Sharing needles","Poor hygiene","Vaccination","Crowded living"], answer:"Vaccination", hint:"Prevention.", explain:"Vaccines protect individuals and communities." },
+    { type:"short", q:"Define 'immune system'.", answer:"Body’s defence against pathogens", hint:"White blood cells.", explain:"Includes cells and organs that fight infection." },
+
+    // 71–80 Genetics & Evolution
+    { type:"mcq", q:"Where is genetic material stored?", options:["Cytoplasm","Cell wall","Nucleus","Ribosome"], answer:"Nucleus", hint:"Chromosomes.", explain:"DNA is in chromosomes in the nucleus." },
+    { type:"short", q:"Define 'gene'.", answer:"A section of DNA coding for a protein", hint:"Unit of inheritance.", explain:"Genes determine characteristics." },
+    { type:"tf", q:"Variation can be genetic or environmental.", answer:"True", hint:"Different causes.", explain:"Both DNA and environment affect traits." },
+    { type:"fill", q:"Fill in: Different forms of the same gene are called ____.", answer:"alleles", hint:"Variants.", explain:"Alleles produce variation." },
+    { type:"mcq", q:"Which scientist proposed natural selection?", options:["Mendel","Darwin","Pasteur","Einstein"], answer:"Darwin", hint:"Galapagos.", explain:"Darwin observed variation and survival." },
+    { type:"short", q:"Define 'natural selection'.", answer:"Process where better adapted organisms survive and reproduce", hint:"Survival of the fittest.", explain:"Advantageous traits become more common." },
+    { type:"tf", q:"Mutations are always harmful.", answer:"False", hint:"Can be neutral or beneficial.", explain:"Some mutations have no effect or are helpful." },
+    { type:"fill", q:"Fill in: The complete set of DNA in an organism is called its ____.", answer:"genome", hint:"All genes.", explain:"Genome includes all genetic material." },
+    { type:"mcq", q:"Which term describes the physical appearance of an organism?", options:["Genotype","Phenotype","Allele","Chromosome"], answer:"Phenotype", hint:"Observable.", explain:"Phenotype is expression of genes." },
+    { type:"short", q:"Define 'selective breeding'.", answer:"Choosing parents with desired traits to produce offspring", hint:"Artificial selection.", explain:"Humans control breeding for traits." },
+
+    // 81–90 Ecology & Environment
+    { type:"mcq", q:"Which term means all the organisms of one species in an area?", options:["Community","Population","Ecosystem","Habitat"], answer:"Population", hint:"Single species.", explain:"Population = one species group." },
+    { type:"short", q:"Define 'ecosystem'.", answer:"Community of organisms and their environment", hint:"Living + non‑living.", explain:"Includes biotic and abiotic factors." },
+    { type:"tf", q:"A producer makes its own food.", answer:"True", hint:"Plants.", explain:"Producers use photosynthesis." },
+    { type:"fill", q:"Fill in: Animals that eat plants are called ____.", answer:"herbivores", hint:"Plant‑eaters.", explain:"Herbivores feed on producers." },
+    { type:"mcq", q:"Which gas increases due to burning fossil fuels?", options:["Oxygen","Nitrogen","Carbon dioxide","Helium"], answer:"Carbon dioxide", hint:"Greenhouse gas.", explain:"CO₂ contributes to global warming." },
+    { type:"short", q:"Define 'biodiversity'.", answer:"Variety of different species in an area", hint:"Range of life.", explain:"High biodiversity is more stable." },
+    { type:"tf", q:"Deforestation can reduce biodiversity.", answer:"True", hint:"Habitat loss.", explain:"Species lose homes and food." },
+    { type:"fill", q:"Fill in: A ____ is a diagram showing feeding relationships.", answer:"food web", hint:"Interconnected chains.", explain:"Food webs show complex feeding." },
+    { type:"mcq", q:"Which factor is abiotic?", options:["Predators","Competition","Temperature","Disease"], answer:"Temperature", hint:"Non‑living.", explain:"Abiotic factors are physical." },
+    { type:"short", q:"Define 'trophic level'.", answer:"Position of an organism in a food chain", hint:"Feeding level.", explain:"Shows energy transfer steps." },
+
+    // 91–100 Human Impact & Homeostasis
+    { type:"mcq", q:"Which organ monitors blood glucose?", options:["Heart","Liver","Pancreas","Kidneys"], answer:"Pancreas", hint:"Insulin.", explain:"Pancreas releases insulin and glucagon." },
+    { type:"short", q:"Define 'homeostasis'.", answer:"Maintaining a stable internal environment", hint:"Balance.", explain:"Keeps conditions optimal." },
+    { type:"tf", q:"Sweating helps cool the body.", answer:"True", hint:"Evaporation.", explain:"Sweat evaporates and removes heat." },
+    { type:"fill", q:"Fill in: Insulin causes blood glucose levels to ____.", answer:"decrease", hint:"Storage.", explain:"Insulin promotes glucose uptake." },
+    { type:"mcq", q:"Which gas is linked to acid rain?", options:["Carbon dioxide","Sulfur dioxide","Oxygen","Hydrogen"], answer:"Sulfur dioxide", hint:"Burning coal.", explain:"SO₂ forms acidic solutions." },
+    { type:"short", q:"Define 'global warming'.", answer:"Increase in Earth’s average temperature due to greenhouse gases", hint:"Climate change.", explain:"Caused by human activities." },
+    { type:"tf", q:"Kidneys help remove urea from the blood.", answer:"True", hint:"Excretion.", explain:"They filter waste products." },
+    { type:"fill", q:"Fill in: The hormone that raises blood glucose is ____.", answer:"glucagon", hint:"Opposite of insulin.", explain:"Glucagon releases glucose from stores." },
+    { type:"mcq", q:"Which human activity increases methane levels?", options:["Driving cars","Rice farming","Using computers","Drinking water"], answer:"Rice farming", hint:"Wet fields.", explain:"Rice paddies release methane." },
+    { type:"short", q:"Define 'negative feedback'.", answer:"A response that counteracts a change", hint:"Restores balance.", explain:"It keeps conditions within limits." }
+);
+
+const chemistryQuestions = [];
+const physicsQuestions = [];
+const geographyQuestions = [];
+const historyQuestions = [];
+const csQuestions = [];
+
+// Main question bank linking subjects to lists
+const questionBank = {
+    "Maths": mathsQuestions,
+    "English": englishQuestions,
+    "Biology": biologyQuestions,
+    "Chemistry": chemistryQuestions,
+    "Physics": physicsQuestions,
+    "Geography": geographyQuestions,
+    "History": historyQuestions,
+    "Computer Science": csQuestions
+};
+
+
+    let currentSubject = null;
+    let currentIndex = 0;
+    let score = 0;
+    let currentQuestion = null;
+
+    function selectSubject(subject) {
+        currentSubject = subject;
+        currentIndex = 0;
+        score = 0;
+        scoreDisplay.textContent = "Score: " + score;
+        subjectTitle.textContent = subject + " Questions";
+        subjectPage.classList.add("hidden");
+        questionPage.classList.remove("hidden");
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        aiMessage.textContent = "";
+        answerMessage.textContent = "";
+        textAnswer.value = "";
+        textAnswer.classList.add("hidden");
+        optionsArea.innerHTML = "";
+
+        const questions = questionBank[currentSubject];
+        if (!questions || questions.length === 0) {
+            questionText.textContent = "No questions available for this subject yet.";
+            return;
+        }
+
+        currentQuestion = questions[currentIndex % questions.length];
+        questionText.innerHTML = "<strong>Question:</strong> " + currentQuestion.q;
+
+        if (currentQuestion.type === "mcq") {
+            currentQuestion.options.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.className = "option-btn";
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    textAnswer.value = opt;
+                };
+                optionsArea.appendChild(btn);
+            });
+            textAnswer.classList.add("hidden");
+        } else if (currentQuestion.type === "tf") {
+            ["True", "False"].forEach(opt => {
+                const btn = document.createElement("button");
+                btn.className = "option-btn";
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    textAnswer.value = opt;
+                };
+                optionsArea.appendChild(btn);
+            });
+            textAnswer.classList.add("hidden");
+        } else {
+            // short or fill
+            textAnswer.classList.remove("hidden");
+        }
+    }
+
+    function submitAnswer() {
+        if (!currentQuestion) return;
+        const userAns = textAnswer.value.trim();
+        if (!userAns) {
+            answerMessage.textContent = "Please choose or type an answer.";
+            answerMessage.style.color = "red";
+            return;
+        }
+
+        if (userAns.toLowerCase() === currentQuestion.answer.toLowerCase()) {
+            answerMessage.textContent = "Correct!";
+            answerMessage.style.color = "green";
+            score++;
+        } else {
+            answerMessage.textContent = "Incorrect. Correct answer: " + currentQuestion.answer;
+            answerMessage.style.color = "red";
+        }
+        scoreDisplay.textContent = "Score: " + score;
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        loadQuestion();
+    }
+
+    // AI Mode
+    function aiHint() {
+        if (!currentQuestion || !currentQuestion.hint) {
+            aiMessage.textContent = "AI Hint: Try breaking the question into smaller parts.";
+        } else {    
+            aiMessage.textContent = "AI Hint: " + currentQuestion.hint;
+        }
+        aiMessage.style.color = "#ff9800";
+    }
+
+    function aiExplain() {
+        if (!currentQuestion || !currentQuestion.explain) {
+            aiMessage.textContent = "AI Explanation: Think about the key concept this question is testing.";
+        } else {
+            aiMessage.textContent = "AI Explanation: " + currentQuestion.explain;
+        }
+        aiMessage.style.color = "#ff9800";
+    }
+
+    function aiPractice() {
+        aiMessage.textContent = "AI Practice: Try creating your own similar question and solving it. For example: change the numbers or topic slightly.";
+        aiMessage.style.color = "#ff9800";
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
