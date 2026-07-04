@@ -330,6 +330,7 @@
     </div>
 </div>
 
+
 <script>
     // Navigation helpers
     function showSignup() {
@@ -888,6 +889,123 @@ chemistryQuestions.push(
     { type:"mcq", q:"Which metal reacts most vigorously with water?", options:["Calcium","Sodium","Potassium","Magnesium"], answer:"Potassium", hint:"Group 1.", explain:"Potassium is highly reactive." },
 );
 const physicsQuestions = [];
+physicsQuestions.push(
+    // 1–10 Forces & Motion
+    { type:"mcq", q:"A force of 12 N acts on a 3 kg object. What is the acceleration?", options:["2 m/s²","3 m/s²","4 m/s²","6 m/s²"], answer:"4 m/s²", hint:"Use F = ma.", explain:"a = 12 ÷ 3 = 4 m/s²." },
+    { type:"short", q:"State Newton’s Second Law.", answer:"Force = mass × acceleration", hint:"F = ma.", explain:"Acceleration is proportional to force." },
+    { type:"tf", q:"Velocity includes direction.", answer:"True", hint:"Vector quantity.", explain:"Velocity is speed in a direction." },
+    { type:"fill", q:"Fill in: Distance = speed × ____.", answer:"time", hint:"Basic formula.", explain:"d = s × t." },
+    { type:"mcq", q:"A car accelerates from 10 to 30 m/s in 4 s. What is acceleration?", options:["4 m/s²","5 m/s²","6 m/s²","8 m/s²"], answer:"5 m/s²", hint:"Change ÷ time.", explain:"(30−10)/4 = 5 m/s²." },
+    { type:"short", q:"Define 'resultant force'.", answer:"Overall force acting on an object", hint:"Combine forces.", explain:"Sum of all forces." },
+    { type:"tf", q:"If resultant force is zero, motion stays the same.", answer:"True", hint:"Balanced forces.", explain:"Object stays at rest or constant speed." },
+    { type:"fill", q:"Fill in: Acceleration is measured in m/s____.", answer:"2", hint:"Squared.", explain:"Unit is m/s²." },
+    { type:"mcq", q:"Which graph shows constant speed?", options:["Horizontal line","Straight diagonal line","Curved line","Vertical line"], answer:"Straight diagonal line", hint:"Distance increases steadily.", explain:"Constant speed = straight slope." },
+    { type:"short", q:"Define 'terminal velocity'.", answer:"Maximum constant speed when forces balance", hint:"Skydiver.", explain:"Weight = air resistance." },
+
+    // 11–20 Energy
+    { type:"mcq", q:"Unit of energy?", options:["Newton","Joule","Watt","Pascal"], answer:"Joule", hint:"J.", explain:"Energy measured in joules." },
+    { type:"short", q:"State the equation for kinetic energy.", answer:"½mv²", hint:"Half mass times velocity squared.", explain:"KE = ½mv²." },
+    { type:"tf", q:"Energy cannot be created or destroyed.", answer:"True", hint:"Conservation.", explain:"Energy is transferred." },
+    { type:"fill", q:"Fill in: GPE = mass × g × ____.", answer:"height", hint:"Vertical distance.", explain:"GPE = mgh." },
+    { type:"mcq", q:"A 2 kg object is lifted 5 m. g = 10 N/kg. GPE?", options:["50 J","100 J","10 J","25 J"], answer:"100 J", hint:"mgh.", explain:"2×10×5 = 100 J." },
+    { type:"short", q:"Define 'power'.", answer:"Rate of energy transfer", hint:"Energy per second.", explain:"Measured in watts." },
+    { type:"tf", q:"Work done = force × distance.", answer:"True", hint:"Basic formula.", explain:"W = Fd." },
+    { type:"fill", q:"Fill in: Efficiency = useful output ÷ ____ input.", answer:"total", hint:"All energy.", explain:"Efficiency compares useful to total." },
+    { type:"mcq", q:"Which is a renewable energy source?", options:["Coal","Oil","Wind","Gas"], answer:"Wind", hint:"Not fossil fuel.", explain:"Wind is renewable." },
+    { type:"short", q:"Define 'specific heat capacity'.", answer:"Energy needed to raise 1 kg by 1°C", hint:"Heating.", explain:"Measured in J/kg°C." },
+
+    // 21–30 Electricity
+    { type:"mcq", q:"Unit of current?", options:["Volt","Ampere","Ohm","Watt"], answer:"Ampere", hint:"A.", explain:"Current measured in amps." },
+    { type:"short", q:"State Ohm’s Law.", answer:"V = IR", hint:"Voltage = current × resistance.", explain:"Relationship between V, I, R." },
+    { type:"tf", q:"Current is the same everywhere in a series circuit.", answer:"True", hint:"One path.", explain:"Series circuits have one loop." },
+    { type:"fill", q:"Fill in: Charge = current × ____.", answer:"time", hint:"Q = It.", explain:"Charge measured in coulombs." },
+    { type:"mcq", q:"Which component provides variable resistance?", options:["Bulb","Switch","Resistor","Variable resistor"], answer:"Variable resistor", hint:"Adjustable.", explain:"Changes current flow." },
+    { type:"short", q:"Define 'potential difference'.", answer:"Energy transferred per coulomb of charge", hint:"Voltage.", explain:"Measured in volts." },
+    { type:"tf", q:"Resistance increases when wire length increases.", answer:"True", hint:"More collisions.", explain:"Longer wire → more resistance." },
+    { type:"fill", q:"Fill in: Power = current × ____.", answer:"voltage", hint:"P = IV.", explain:"Electrical power formula." },
+    { type:"mcq", q:"Which circuit has branches?", options:["Series","Parallel","Open","Short"], answer:"Parallel", hint:"Multiple paths.", explain:"Parallel circuits have branches." },
+    { type:"short", q:"Define 'fuse'.", answer:"Safety device that melts if current too high", hint:"Protection.", explain:"Prevents overheating." },
+
+    // 31–40 Waves
+    { type:"mcq", q:"Unit of frequency?", options:["Hz","m","s","J"], answer:"Hz", hint:"Hertz.", explain:"Frequency measured in hertz." },
+    { type:"short", q:"State wave speed equation.", answer:"v = fλ", hint:"Speed = frequency × wavelength.", explain:"Wave speed formula." },
+    { type:"tf", q:"Sound cannot travel through a vacuum.", answer:"True", hint:"Needs particles.", explain:"Sound needs a medium." },
+    { type:"fill", q:"Fill in: Wavelength is measured in ____.", answer:"metres", hint:"Distance.", explain:"Unit is metres." },
+    { type:"mcq", q:"Which wave is longitudinal?", options:["Light","Water","Sound","Radio"], answer:"Sound", hint:"Vibrations parallel.", explain:"Sound waves are longitudinal." },
+    { type:"short", q:"Define 'amplitude'.", answer:"Maximum displacement from rest position", hint:"Height.", explain:"Amplitude shows energy." },
+    { type:"tf", q:"Light waves are transverse.", answer:"True", hint:"Perpendicular vibrations.", explain:"Light is electromagnetic." },
+    { type:"fill", q:"Fill in: Frequency is number of waves per ____.", answer:"second", hint:"Time.", explain:"Measured in Hz." },
+    { type:"mcq", q:"Which EM wave has highest frequency?", options:["Radio","Microwave","Infrared","Gamma"], answer:"Gamma", hint:"Most energy.", explain:"Gamma rays highest frequency." },
+    { type:"short", q:"Define 'refraction'.", answer:"Change in wave direction when entering new medium", hint:"Bending.", explain:"Due to speed change." },
+
+    // 41–50 Magnetism & Electromagnetism
+    { type:"mcq", q:"Which material is magnetic?", options:["Copper","Aluminium","Iron","Plastic"], answer:"Iron", hint:"Common magnet.", explain:"Iron is magnetic." },
+    { type:"short", q:"Define 'electromagnet'.", answer:"Magnet created by current in a coil", hint:"Temporary.", explain:"Strength depends on current." },
+    { type:"tf", q:"Increasing current strengthens an electromagnet.", answer:"True", hint:"More field.", explain:"More current → stronger field." },
+    { type:"fill", q:"Fill in: A coil of wire is called a ____.", answer:"solenoid", hint:"Electromagnet.", explain:"Solenoids create magnetic fields." },
+    { type:"mcq", q:"Which rule gives direction of force on a wire?", options:["Left-hand rule","Right-hand rule","Fleming’s left-hand rule","Newton’s rule"], answer:"Fleming’s left-hand rule", hint:"Motor effect.", explain:"Used for motors." },
+    { type:"short", q:"Define 'magnetic field'.", answer:"Region where magnetic materials experience force", hint:"Around magnets.", explain:"Field lines show direction." },
+    { type:"tf", q:"Magnetic field lines go from north to south.", answer:"True", hint:"Convention.", explain:"Outside magnet, N → S." },
+    { type:"fill", q:"Fill in: A transformer changes voltage using ____ coils.", answer:"two", hint:"Primary + secondary.", explain:"Transformers use two coils." },
+    { type:"mcq", q:"Which device uses electromagnets?", options:["Speaker","Mirror","Battery","Light bulb"], answer:"Speaker", hint:"Vibrations.", explain:"Speakers use electromagnets." },
+    { type:"short", q:"Define 'induced magnet'.", answer:"Material that becomes magnetic when near magnet", hint:"Temporary.", explain:"Loses magnetism when removed." },
+
+    // 51–60 Thermal Physics
+    { type:"mcq", q:"Which method transfers heat through solids?", options:["Conduction","Convection","Radiation","Evaporation"], answer:"Conduction", hint:"Particles vibrate.", explain:"Conduction occurs in solids." },
+    { type:"short", q:"Define 'convection'.", answer:"Transfer of heat by movement of fluids", hint:"Liquids/gases.", explain:"Warm fluid rises, cool sinks." },
+    { type:"tf", q:"Dark surfaces absorb more radiation.", answer:"True", hint:"Colour.", explain:"Dark absorbs more heat." },
+    { type:"fill", q:"Fill in: Evaporation causes ____.", answer:"cooling", hint:"Sweat.", explain:"Particles with most energy escape." },
+    { type:"mcq", q:"Which state has strongest forces?", options:["Solid","Liquid","Gas","Plasma"], answer:"Solid", hint:"Fixed shape.", explain:"Particles tightly packed." },
+    { type:"short", q:"Define 'specific latent heat'.", answer:"Energy needed to change state without temperature change", hint:"Melting/boiling.", explain:"Measured in J/kg." },
+    { type:"tf", q:"Boiling occurs at a fixed temperature.", answer:"True", hint:"Boiling point.", explain:"Depends on pressure." },
+    { type:"fill", q:"Fill in: Temperature is measured in ____.", answer:"°C", hint:"Degrees.", explain:"Celsius scale." },
+    { type:"mcq", q:"Which process releases energy?", options:["Melting","Boiling","Condensation","Evaporation"], answer:"Condensation", hint:"Gas → liquid.", explain:"Particles lose energy." },
+    { type:"short", q:"Define 'thermal insulation'.", answer:"Reducing heat transfer", hint:"Keeping warm.", explain:"Insulators slow energy loss." },
+
+    // 61–70 Radioactivity
+    { type:"mcq", q:"Which radiation is most penetrating?", options:["Alpha","Beta","Gamma","Neutron"], answer:"Gamma", hint:"High energy.", explain:"Gamma penetrates deeply." },
+    { type:"short", q:"Define 'half-life'.", answer:"Time for half the nuclei to decay", hint:"Decay rate.", explain:"Characteristic of isotope." },
+    { type:"tf", q:"Alpha radiation is stopped by paper.", answer:"True", hint:"Weak penetration.", explain:"Alpha blocked easily." },
+    { type:"fill", q:"Fill in: Beta radiation is stopped by ____.", answer:"aluminium", hint:"Thin metal.", explain:"Aluminium blocks beta." },
+    { type:"mcq", q:"Which radiation has highest ionisation?", options:["Alpha","Beta","Gamma","Neutron"], answer:"Alpha", hint:"Large particle.", explain:"Alpha strongly ionising." },
+    { type:"short", q:"Define 'background radiation'.", answer:"Radiation always present in environment", hint:"Natural sources.", explain:"Comes from rocks, cosmic rays." },
+    { type:"tf", q:"Radioactive decay is random.", answer:"True", hint:"Unpredictable.", explain:"Cannot predict individual decay." },
+    { type:"fill", q:"Fill in: Gamma radiation is a type of ____ wave.", answer:"electromagnetic", hint:"EM spectrum.", explain:"Gamma is EM radiation." },
+    { type:"mcq", q:"Which isotope is used in smoke alarms?", options:["Uranium‑235","Americium‑241","Carbon‑14","Radon‑222"], answer:"Americium‑241", hint:"Alpha source.", explain:"Used for ionisation." },
+    { type:"short", q:"Define 'irradiation'.", answer:"Exposure to radiation", hint:"Not contamination.", explain:"Does not make object radioactive." },
+
+    // 71–80 Space Physics
+    { type:"mcq", q:"Which force keeps planets in orbit?", options:["Magnetic","Electrostatic","Gravity","Friction"], answer:"Gravity", hint:"Attraction.", explain:"Gravity provides centripetal force." },
+    { type:"short", q:"Define 'orbit'.", answer:"Path of an object around another due to gravity", hint:"Curved path.", explain:"Planets orbit stars." },
+    { type:"tf", q:"The Sun is a star.", answer:"True", hint:"Main sequence.", explain:"Sun is a medium-sized star." },
+    { type:"fill", q:"Fill in: The Milky Way is a ____.", answer:"galaxy", hint:"Huge collection.", explain:"Contains billions of stars." },
+    { type:"mcq", q:"Which planet has the strongest gravity?", options:["Earth","Mars","Jupiter","Venus"], answer:"Jupiter", hint:"Largest mass.", explain:"Jupiter is most massive." },
+    { type:"short", q:"Define 'red shift'.", answer:"Increase in wavelength due to objects moving away", hint:"Expansion.", explain:"Evidence for expanding universe." },
+    { type:"tf", q:"Light from distant galaxies is red-shifted.", answer:"True", hint:"Moving away.", explain:"Shows universe expanding." },
+    { type:"fill", q:"Fill in: The Big Bang theory states the universe began from a very ____ point.", answer:"small", hint:"Dense.", explain:"Universe expanded from tiny point." },
+    { type:"mcq", q:"Which object orbits Earth?", options:["Mars","Moon","Sun","Jupiter"], answer:"Moon", hint:"Natural satellite.", explain:"Moon orbits Earth." },
+    { type:"short", q:"Define 'satellite'.", answer:"Object that orbits a planet or star", hint:"Natural or artificial.", explain:"Used for communication." },
+
+    // 81–90 Momentum
+    { type:"mcq", q:"Momentum = mass × ____.", options:["speed","velocity","force","distance"], answer:"velocity", hint:"Vector.", explain:"Momentum uses velocity." },
+    { type:"short", q:"State the law of conservation of momentum.", answer:"Total momentum before = total momentum after", hint:"Closed system.", explain:"Momentum conserved in collisions." },
+    { type:"tf", q:"Momentum is a vector.", answer:"True", hint:"Direction matters.", explain:"Depends on velocity direction." },
+    { type:"fill", q:"Fill in: Impulse = force × ____.", answer:"time", hint:"Ft.", explain:"Impulse changes momentum." },
+    { type:"mcq", q:"A 2 kg object moves at 3 m/s. Momentum?", options:["3","5","6","9"], answer:"6", hint:"m×v.", explain:"2×3=6 kg m/s." },
+    { type:"short", q:"Define 'collision'.", answer:"Interaction where objects exert forces on each other", hint:"Impact.", explain:"Momentum transfers." },
+    { type:"tf", q:"Airbags increase impact time.", answer:"True", hint:"Reduce force.", explain:"Longer time → smaller force." },
+    { type:"fill", q:"Fill in: Force = change in momentum ÷ ____.", answer:"time", hint:"Rate.", explain:"F = Δp / t." },
+    { type:"mcq", q:"Which collision type conserves kinetic energy?", options:["Elastic","Inelastic","Explosive","Friction"], answer:"Elastic", hint:"Perfect bounce.", explain:"Elastic collisions conserve KE." },
+    { type:"short", q:"Define 'elastic collision'.", answer:"Collision where kinetic energy is conserved", hint:"No loss.", explain:"Objects bounce without energy loss." },
+
+    // 91–100 Pressure & Density
+    { type:"mcq", q:"Density = mass ÷ ____.", options:["volume","area","height","force"], answer:"volume", hint:"Space taken.", explain:"Density = m/V." },
+    { type:"short", q:"Define 'pressure'.", answer:"Force per unit area", hint:"P = F/A.", explain:"Measured in Pascals." },
+    { type:"tf", q:"Liquids are incompressible.", answer:"True", hint:"Particles close.", explain:"Liquids cannot be compressed easily." },
+    { type:"fill", q:"Fill in: Pressure in fluids increases with ____.", answer:"depth", hint:"More weight.", explain:"Deeper → more pressure." },
+    { type:"mcq", q:"Which has highest density?", options:["Air","Water","Oil","Iron"], answer:"Iron", hint:"Solid metal.", explain:"Iron is dense." },
+    { type:"short", q:"Define 'upthrust'.", answer:"Upward force on an object in fluid", hint:"Buoyancy.", explain:"Causes floating." },
+);
 const geographyQuestions = [];
 const historyQuestions = [];
 const csQuestions = [];
@@ -964,16 +1082,41 @@ const questionBank = {
             textAnswer.classList.remove("hidden");
         }
     }
+    function similarityScore(userAns, correctAns) {
+    // Lowercase + remove punctuation
+    userAns = userAns.toLowerCase().trim().replace(/[^\w\s]/g, "");
+    correctAns = correctAns.toLowerCase().trim().replace(/[^\w\s]/g, "");
 
-    function submitAnswer() {
-        if (!currentQuestion) return;
-        const userAns = textAnswer.value.trim();
-        if (!userAns) {
-            answerMessage.textContent = "Please choose or type an answer.";
-            answerMessage.style.color = "red";
-            return;
-        }
+    // Split into words
+    const userWords = userAns.split(/\s+/);
+    const correctWords = correctAns.split(/\s+/);
 
+    let matches = 0;
+
+    // Count matching words
+    correctWords.forEach(word => {
+        if (userWords.includes(word)) matches++;
+    });
+
+    // Similarity = matched words / total correct words
+    return matches / correctWords.length;
+}
+
+
+ function submitAnswer() {
+    const userAns = document.getElementById("textAnswer").value.trim();
+    const answerMessage = document.getElementById("answerMessage");
+    const scoreDisplay = document.getElementById("scoreDisplay");
+    
+
+    if (!currentQuestion) {
+        answerMessage.textContent = "No question loaded.";
+        answerMessage.style.color = "red";
+        return;
+    }
+
+    // MCQ
+    if (currentQuestion.type === "mcq") {
         if (userAns.toLowerCase() === currentQuestion.answer.toLowerCase()) {
             answerMessage.textContent = "Correct!";
             answerMessage.style.color = "green";
@@ -983,7 +1126,41 @@ const questionBank = {
             answerMessage.style.color = "red";
         }
         scoreDisplay.textContent = "Score: " + score;
+        return;
     }
+
+    // TRUE/FALSE
+    if (currentQuestion.type === "tf") {
+        if (userAns.toLowerCase() === currentQuestion.answer.toLowerCase()) {
+            answerMessage.textContent = "Correct!";
+            answerMessage.style.color = "green";
+            score++;
+        } else {
+            answerMessage.textContent = "Incorrect. Correct answer: " + currentQuestion.answer;
+            answerMessage.style.color = "red";
+        }
+        scoreDisplay.textContent = "Score: " + score;
+        return;
+    }
+
+    // SHORT + FILL (fuzzy matching)
+    if (currentQuestion.type === "short" || currentQuestion.type === "fill") {
+        const scoreSim = similarityScore(userAns, currentQuestion.answer);
+
+        if (scoreSim >= 0.5) {
+            answerMessage.textContent = "Correct!";
+            answerMessage.style.color = "green";
+            score++;
+        } else {
+            answerMessage.textContent = "Incorrect. Correct answer: " + currentQuestion.answer;
+            answerMessage.style.color = "red";
+        }
+
+        scoreDisplay.textContent = "Score: " + score;
+        return;
+    }
+}
+
 
     function nextQuestion() {
         currentIndex++;
