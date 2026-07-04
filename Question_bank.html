@@ -310,6 +310,9 @@
         <input type="text" id="textAnswer" class="hidden" placeholder="Type your answer here">
 
         <button id="submitAnswerBtn" onclick="submitAnswer()">Submit Answer</button>
+        <button onclick="showIdealAnswer()">Ideal Answer</button>
+<div id="idealAnswerBox"></div>
+
 
         <p id="answerMessage"></p>
 
@@ -1160,6 +1163,21 @@ const questionBank = {
         return;
     }
 }
+
+function showIdealAnswer() {
+    const idealBox = document.getElementById("idealAnswerBox");
+
+    if (!currentQuestion) {
+        idealBox.textContent = "No question loaded.";
+        idealBox.style.color = "red";
+        return;
+    }
+
+    idealBox.textContent = "Ideal Answer: " + currentQuestion.answer;
+    idealBox.style.color = "blue";
+}
+
+
 
 
     function nextQuestion() {
