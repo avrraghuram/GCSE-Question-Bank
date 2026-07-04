@@ -775,6 +775,118 @@ biologyQuestions.push(
 );
 
 const chemistryQuestions = [];
+chemistryQuestions.push(
+    // 1–10 Atomic Structure
+    { type:"mcq", q:"What is the relative charge of a proton?", options:["+1","0","-1","+2"], answer:"+1", hint:"Positive particle.", explain:"Protons have a +1 charge." },
+    { type:"short", q:"Define 'isotope'.", answer:"Atoms of the same element with different numbers of neutrons", hint:"Same element, different mass.", explain:"Isotopes vary in neutron number." },
+    { type:"tf", q:"Electrons have a negative charge.", answer:"True", hint:"Opposites attract.", explain:"Electrons are negatively charged." },
+    { type:"fill", q:"Fill in: The mass number is the total of protons and ____.", answer:"neutrons", hint:"Inside nucleus.", explain:"Mass number = protons + neutrons." },
+    { type:"mcq", q:"Which particle has no charge?", options:["Proton","Electron","Neutron","Ion"], answer:"Neutron", hint:"Neutral.", explain:"Neutrons are neutral." },
+    { type:"short", q:"Define 'atomic number'.", answer:"Number of protons in the nucleus", hint:"Unique to element.", explain:"Atomic number identifies the element." },
+    { type:"tf", q:"Atoms are electrically neutral.", answer:"True", hint:"Equal charges.", explain:"Protons = electrons." },
+    { type:"fill", q:"Fill in: Electrons orbit the nucleus in ____.", answer:"shells", hint:"Energy levels.", explain:"Electrons occupy shells." },
+    { type:"mcq", q:"Which element has atomic number 8?", options:["Nitrogen","Oxygen","Fluorine","Neon"], answer:"Oxygen", hint:"O₂.", explain:"Oxygen has 8 protons." },
+    { type:"short", q:"Define 'ion'.", answer:"An atom that has gained or lost electrons", hint:"Charged particle.", explain:"Ions form by electron transfer." },
+
+    // 11–20 Periodic Table
+    { type:"mcq", q:"Group 1 elements are called:", options:["Transition metals","Halogens","Alkali metals","Noble gases"], answer:"Alkali metals", hint:"Very reactive.", explain:"Group 1 = alkali metals." },
+    { type:"short", q:"Define 'period'.", answer:"A horizontal row in the periodic table", hint:"Left to right.", explain:"Periods show increasing atomic number." },
+    { type:"tf", q:"Noble gases are unreactive.", answer:"True", hint:"Full outer shell.", explain:"They have stable electron configurations." },
+    { type:"fill", q:"Fill in: Group 7 elements are known as ____.", answer:"halogens", hint:"Salt‑formers.", explain:"Halogens form salts with metals." },
+    { type:"mcq", q:"Which halogen is the most reactive?", options:["Fluorine","Chlorine","Bromine","Iodine"], answer:"Fluorine", hint:"Top of group.", explain:"Reactivity decreases down Group 7." },
+    { type:"short", q:"Define 'transition metal'.", answer:"A metal found in the centre of the periodic table", hint:"Middle block.", explain:"Transition metals have variable oxidation states." },
+    { type:"tf", q:"Reactivity increases down Group 1.", answer:"True", hint:"Outer electron further away.", explain:"Less attraction → easier to lose." },
+    { type:"fill", q:"Fill in: Elements in the same group have the same number of ____ electrons.", answer:"outer", hint:"Valence.", explain:"Outer electrons determine reactivity." },
+    { type:"mcq", q:"Which element is a noble gas?", options:["Oxygen","Argon","Chlorine","Sodium"], answer:"Argon", hint:"Group 0.", explain:"Argon is unreactive." },
+    { type:"short", q:"Define 'reactivity trend'.", answer:"How reactivity changes down a group", hint:"Pattern.", explain:"Trends show predictable changes." },
+
+    // 21–30 Bonding
+    { type:"mcq", q:"Ionic bonding occurs between:", options:["Metal + metal","Non‑metal + non‑metal","Metal + non‑metal","Gas + gas"], answer:"Metal + non‑metal", hint:"Transfer electrons.", explain:"Ionic bonds form by electron transfer." },
+    { type:"short", q:"Define 'covalent bond'.", answer:"A shared pair of electrons", hint:"Non‑metals.", explain:"Covalent bonds share electrons." },
+    { type:"tf", q:"Ionic compounds have high melting points.", answer:"True", hint:"Strong forces.", explain:"Strong electrostatic attraction." },
+    { type:"fill", q:"Fill in: A ____ ion has lost electrons.", answer:"positive", hint:"More protons.", explain:"Loss of electrons → positive charge." },
+    { type:"mcq", q:"Which substance has covalent bonding?", options:["NaCl","MgO","CO₂","Fe"], answer:"CO₂", hint:"Non‑metals.", explain:"Carbon dioxide is covalent." },
+    { type:"short", q:"Define 'giant ionic lattice'.", answer:"A regular arrangement of ions held by strong electrostatic forces", hint:"Repeating pattern.", explain:"Ionic solids form lattices." },
+    { type:"tf", q:"Covalent molecules conduct electricity.", answer:"False", hint:"No ions.", explain:"They lack charged particles." },
+    { type:"fill", q:"Fill in: In ionic bonding, electrons are transferred from ____ to non‑metals.", answer:"metals", hint:"Metals lose electrons.", explain:"Metals form positive ions." },
+    { type:"mcq", q:"Which bond is strongest?", options:["Ionic","Covalent","Metallic","Hydrogen"], answer:"Covalent", hint:"Shared electrons.", explain:"Covalent bonds are very strong." },
+    { type:"short", q:"Define 'metallic bonding'.", answer:"Positive ions surrounded by delocalised electrons", hint:"Sea of electrons.", explain:"Metallic bonds allow conductivity." },
+
+    // 31–40 Chemical Calculations
+    { type:"mcq", q:"Relative formula mass of H₂O?", options:["16","18","20","22"], answer:"18", hint:"H=1, O=16.", explain:"2×1 + 16 = 18." },
+    { type:"short", q:"Define 'mole'.", answer:"Amount of substance containing Avogadro's number of particles", hint:"6.02×10²³.", explain:"A mole is a counting unit." },
+    { type:"tf", q:"Mass = moles × Mr.", answer:"True", hint:"Key formula.", explain:"Mass calculation uses Mr." },
+    { type:"fill", q:"Fill in: Avogadro’s constant is ____ × 10²³.", answer:"6.02", hint:"Particles.", explain:"6.02×10²³ particles per mole." },
+    { type:"mcq", q:"Mr of CO₂?", options:["28","44","32","40"], answer:"44", hint:"C=12, O=16.", explain:"12 + 32 = 44." },
+    { type:"short", q:"Define 'concentration'.", answer:"Amount of solute per dm³", hint:"Solutions.", explain:"Measured in mol/dm³." },
+    { type:"tf", q:"Percentage yield compares actual and theoretical yield.", answer:"True", hint:"Efficiency.", explain:"Shows reaction success." },
+    { type:"fill", q:"Fill in: Atom economy = (Mr of desired product / total Mr of products) × ____.", answer:"100", hint:"Percentage.", explain:"Atom economy measures efficiency." },
+    { type:"mcq", q:"Which unit is used for concentration?", options:["mol/dm³","g","kg","mol"], answer:"mol/dm³", hint:"Solutions.", explain:"Moles per dm³." },
+    { type:"short", q:"Define 'empirical formula'.", answer:"Simplest whole‑number ratio of atoms", hint:"Basic ratio.", explain:"Empirical formula simplifies composition." },
+
+    // 41–50 Acids & Bases
+    { type:"mcq", q:"pH of a strong acid?", options:["1","5","7","14"], answer:"1", hint:"Very low.", explain:"Strong acids have low pH." },
+    { type:"short", q:"Define 'alkali'.", answer:"A soluble base", hint:"Dissolves in water.", explain:"Alkalis release OH⁻ ions." },
+    { type:"tf", q:"Acids produce H⁺ ions in solution.", answer:"True", hint:"Hydrogen ions.", explain:"H⁺ ions cause acidity." },
+    { type:"fill", q:"Fill in: A neutral solution has pH ____.", answer:"7", hint:"Middle.", explain:"Neutral pH is 7." },
+    { type:"mcq", q:"Which indicator turns red in acid?", options:["Litmus","Phenolphthalein","Universal indicator","Methyl orange"], answer:"Methyl orange", hint:"Exam favourite.", explain:"Methyl orange turns red in acid." },
+    { type:"short", q:"Define 'neutralisation'.", answer:"Reaction between acid and base to form salt and water", hint:"Classic reaction.", explain:"H⁺ + OH⁻ → H₂O." },
+    { type:"tf", q:"Bases produce OH⁻ ions.", answer:"True", hint:"Hydroxide.", explain:"OH⁻ ions cause alkalinity." },
+    { type:"fill", q:"Fill in: Acid + metal → salt + ____.", answer:"hydrogen", hint:"Gas produced.", explain:"Hydrogen gas forms." },
+    { type:"mcq", q:"Which gas is tested using a squeaky pop?", options:["CO₂","O₂","H₂","Cl₂"], answer:"H₂", hint:"Pop sound.", explain:"Hydrogen burns with squeaky pop." },
+    { type:"short", q:"Define 'salt'.", answer:"Compound formed when hydrogen in acid is replaced by metal", hint:"Product of neutralisation.", explain:"Salts form in acid reactions." },
+
+    // 51–60 Electrolysis
+    { type:"mcq", q:"Electrolysis uses:", options:["Heat","Light","Electricity","Pressure"], answer:"Electricity", hint:"Breaking compounds.", explain:"Electricity decomposes ionic compounds." },
+    { type:"short", q:"Define 'electrolyte'.", answer:"A molten or dissolved ionic compound", hint:"Conducts electricity.", explain:"Electrolytes allow ion movement." },
+    { type:"tf", q:"Positive ions move to the cathode.", answer:"True", hint:"Opposites attract.", explain:"Cathode is negative." },
+    { type:"fill", q:"Fill in: The anode is the ____ electrode.", answer:"positive", hint:"Opposite of cathode.", explain:"Anode attracts negative ions." },
+    { type:"mcq", q:"Which product forms at the cathode during electrolysis of NaCl solution?", options:["Chlorine","Hydrogen","Sodium","Oxygen"], answer:"Hydrogen", hint:"More reactive metal stays.", explain:"Hydrogen is discharged." },
+    { type:"short", q:"Define 'oxidation'.", answer:"Loss of electrons", hint:"OIL RIG.", explain:"Oxidation Is Loss." },
+    { type:"tf", q:"Reduction is gain of electrons.", answer:"True", hint:"OIL RIG.", explain:"Reduction Is Gain." },
+    { type:"fill", q:"Fill in: Electrolysis of water produces hydrogen and ____.", answer:"oxygen", hint:"Two gases.", explain:"Water splits into H₂ and O₂." },
+    { type:"mcq", q:"Which ions move to the anode?", options:["Positive","Negative","Neutral","Metal"], answer:"Negative", hint:"Opposites attract.", explain:"Anode attracts anions." },
+    { type:"short", q:"Define 'inert electrode'.", answer:"Electrode that does not react", hint:"Graphite.", explain:"Inert electrodes do not change." },
+
+    // 61–70 Rates of Reaction
+    { type:"mcq", q:"Which factor increases rate of reaction?", options:["Lower temperature","Smaller surface area","Higher concentration","Lower pressure"], answer:"Higher concentration", hint:"More collisions.", explain:"More particles → faster reaction." },
+    { type:"short", q:"Define 'activation energy'.", answer:"Minimum energy needed for reaction", hint:"Energy barrier.", explain:"Particles must exceed this energy." },
+    { type:"tf", q:"Catalysts increase reaction rate.", answer:"True", hint:"Lower activation energy.", explain:"Catalysts provide alternative pathway." },
+    { type:"fill", q:"Fill in: Increasing temperature increases particle ____.", answer:"energy", hint:"More collisions.", explain:"Particles move faster." },
+    { type:"mcq", q:"Which factor does NOT affect rate?", options:["Temperature","Concentration","Surface area","Colour"], answer:"Colour", hint:"Irrelevant.", explain:"Colour does not affect rate." },
+    { type:"short", q:"Define 'collision theory'.", answer:"Reactions occur when particles collide with enough energy", hint:"Key idea.", explain:"Successful collisions cause reactions." },
+    { type:"tf", q:"Powders react faster than lumps.", answer:"True", hint:"Surface area.", explain:"More surface area → faster reaction." },
+    { type:"fill", q:"Fill in: Catalysts are not ____ in reactions.", answer:"used up", hint:"Remain unchanged.", explain:"Catalysts are reusable." },
+    { type:"mcq", q:"Which catalyst is used in the Haber process?", options:["Copper","Iron","Platinum","Nickel"], answer:"Iron", hint:"Ammonia production.", explain:"Iron speeds up Haber process." },
+    { type:"short", q:"Define 'rate of reaction'.", answer:"How quickly reactants turn into products", hint:"Speed.", explain:"Measured by change over time." },
+
+    // 71–80 Energy Changes
+    { type:"mcq", q:"Exothermic reactions:", options:["Release energy","Absorb energy","Stay same","Cool surroundings"], answer:"Release energy", hint:"Heat out.", explain:"Exothermic = energy released." },
+    { type:"short", q:"Define 'endothermic'.", answer:"Reaction that absorbs energy", hint:"Heat in.", explain:"Endothermic reactions take in heat." },
+    { type:"tf", q:"Combustion is exothermic.", answer:"True", hint:"Burning.", explain:"Burning releases heat." },
+    { type:"fill", q:"Fill in: Energy change = energy in − energy ____.", answer:"out", hint:"Difference.", explain:"Energy change compares bonds." },
+    { type:"mcq", q:"Which reaction is endothermic?", options:["Combustion","Neutralisation","Dissolving ammonium nitrate","Respiration"], answer:"Dissolving ammonium nitrate", hint:"Cooling pack.", explain:"Used in cold packs." },
+    { type:"short", q:"Define 'bond energy'.", answer:"Energy needed to break a bond", hint:"Measured in kJ/mol.", explain:"Bond breaking requires energy." },
+    { type:"tf", q:"Bond breaking is endothermic.", answer:"True", hint:"Energy in.", explain:"Breaking bonds absorbs energy." },
+    { type:"fill", q:"Fill in: Bond making is ____.", answer:"exothermic", hint:"Energy out.", explain:"Bond formation releases energy." },
+    { type:"mcq", q:"Which has higher energy: reactants or products in exothermic reaction?", options:["Reactants","Products","Same","Depends"], answer:"Reactants", hint:"Energy released.", explain:"Reactants have more energy." },
+    { type:"short", q:"Define 'energy profile diagram'.", answer:"Graph showing energy changes during reaction", hint:"Curve.", explain:"Shows activation energy and overall change." },
+
+    // 81–90 Organic Chemistry
+    { type:"mcq", q:"Alkanes have general formula:", options:["CnH2n","CnH2n+2","CnHn","CnH2n−2"], answer:"CnH2n+2", hint:"Single bonds.", explain:"Alkanes are saturated hydrocarbons." },
+    { type:"short", q:"Define 'homologous series'.", answer:"Family of compounds with same functional group and trend in properties", hint:"Similar.", explain:"Series differ by CH₂ group." },
+    { type:"tf", q:"Alkenes are saturated hydrocarbons.", answer:"False", hint:"Double bond.", explain:"Alkenes are unsaturated." },
+    { type:"fill", q:"Fill in: Ethene has a ____ bond.", answer:"double", hint:"Unsaturated.", explain:"Ethene = C₂H₄ with double bond." },
+    { type:"mcq", q:"Which is an alkene?", options:["C₂H₆","C₂H₄","C₃H₈","CH₄"], answer:"C₂H₄", hint:"Double bond.", explain:"Ethene is an alkene." },
+    { type:"short", q:"Define 'cracking'.", answer:"Breaking long hydrocarbons into shorter ones", hint:"Heat + catalyst.", explain:"Produces alkenes and alkanes." },
+    { type:"tf", q:"Methane is the simplest alkane.", answer:"True", hint:"CH₄.", explain:"Methane has one carbon." },
+    { type:"fill", q:"Fill in: Alcohols contain the ____ functional group.", answer:"OH", hint:"Hydroxyl.", explain:"Alcohols have OH group." },
+    { type:"mcq", q:"Which is an alcohol?", options:["CH₄","C₂H₆","C₂H₅OH","C₂H₄"], answer:"C₂H₅OH", hint:"OH group.", explain:"Ethanol is an alcohol." },
+    { type:"short", q:"Define 'polymer'.", answer:"Long chain molecule made from monomers", hint:"Repeating units.", explain:"Polymers form by addition reactions." },
+
+    // 91–100 Chemical Changes & Reactions
+    { type:"mcq", q:"Which metal reacts most vigorously with water?", options:["Calcium","Sodium","Potassium","Magnesium"], answer:"Potassium", hint:"Group 1.", explain:"Potassium is highly reactive." },
+);
 const physicsQuestions = [];
 const geographyQuestions = [];
 const historyQuestions = [];
