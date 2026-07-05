@@ -113,9 +113,6 @@
             font-weight: bold;
         }
 
-        .hidden {
-            display: none;
-        }
 
         /* Subject grid with icons */
         .subject-grid {
@@ -186,6 +183,54 @@
             margin-top: 10px;
             font-weight: bold;
         }
+        .profile-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 80px;
+    margin: 10px;
+}
+
+.profile-button p {
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.profile-icon {
+    width: 60px;
+    height: 60px;
+}
+.lifetime-stats-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 90px;
+    text-align: center;
+}
+
+.lifetime-stats-button p {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.stats-icon {
+    width: 50px;
+    height: 50px;
+}
+
+
+        .hidden {
+            display: none !important;
+        }
+
+
     </style>
 </head>
 <body>
@@ -250,12 +295,18 @@
 
 
 
-<div id="subjectPage" class="container hidden">
-    <h2>Select a GCSE Subject</h2>
-    <p style="text-align:center;">Choose a subject to start mixed questions.</p>
 
-    <div class="subject-grid">
-        <div class="subject-card" onclick="selectSubject('Maths')">
+<div id="subjectPage" class="container hidden">
+
+  <!-- Lifetime Stats button at top-left -->
+
+
+  <h2>Select a GCSE Subject</h2>
+  <p style="text-align:center;">Choose a subject to start mixed questions.</p>
+
+  <div class="subject-grid">
+    <!-- your subject buttons go here -->
+     <div class="subject-card" onclick="selectSubject('Maths')">
             <span class="subject-icon">📐</span>
             Maths
         </div>
@@ -288,6 +339,12 @@
             Computer Science
         </div>
     </div>
+  </div>
+
+</div>
+
+
+        
 
     <div class="link">
         <a href="#" onclick="logout()">Log out</a>
@@ -333,6 +390,25 @@
         <a href="#" onclick="logout()">Log out</a>
     </div>
 </div>
+<div id="profilePage" class="hidden">
+    <h2>Your Profile</h2>
+
+ 
+    <p>Profile</p>
+</div>
+
+</div>
+<div id="lifetimeStatsPage" class="hidden">
+    <h2>Lifetime Stats</h2>
+    <p id="lsScore"></p>
+    <p id="lsAnswered"></p>
+    <p id="lsCorrect"></p>
+    <p id="lsAccuracy"></p>
+
+    <button onclick="goBack()">Back</button>
+</div>
+
+
 
 
 <script>
@@ -371,6 +447,32 @@
         forgotPage.classList.add("hidden");
         questionPage.classList.add("hidden");
     }
+
+function updateLifetimeStats() {
+    const p = playerProfile;
+
+    const accuracy = p.totalAnswered > 0
+        ? Math.round((p.totalCorrect / p.totalAnswered) * 100)
+        : 0;
+
+    document.getElementById("lsScore").textContent = "Lifetime Score: " + p.lifetimeScore;
+    document.getElementById("lsAnswered").textContent = "Total Answered: " + p.totalAnswered;
+    document.getElementById("lsCorrect").textContent = "Total Correct: " + p.totalCorrect;
+    document.getElementById("lsAccuracy").textContent = "Accuracy: " + accuracy + "%";
+}
+    function showLifetimeStats() {
+    updateLifetimeStats();
+    document.getElementById("subjectPage").classList.add("hidden");
+    document.getElementById("lifetimeStatsPage").classList.remove("hidden");
+}
+
+function goBack() {
+    document.getElementById("lifetimeStatsPage").classList.add("hidden");
+    document.getElementById("subjectPage").classList.remove("hidden");
+}
+
+
+
 
     // Auth
     function signup() {
@@ -1252,7 +1354,7 @@ historyQuestions.push(
 
 
 const csQuestions = [];
-const computerScienceQuestions = [
+csQuestions.push(
 
     // FUNDAMENTALS (1–15)
     { type: "mcq", question: "What does CPU stand for?", options: ["Central Processing Unit", "Computer Power Unit", "Central Program Utility"], answer: "Central Processing Unit" },
@@ -1366,7 +1468,7 @@ const computerScienceQuestions = [
     { type: "fill", question: "A ________ is a virtual machine running on a host.", answer: "Guest" },
     { type: "tf", question: "Embedded systems are specialised for one task.", answer: "True" }
 
-];
+);
 
 // Main question bank linking subjects to lists
 const questionBank = {
@@ -1379,12 +1481,6 @@ const questionBank = {
     "History": historyQuestions,
     "Computer Science": csQuestions
 };
-
-
-    let currentSubject = null;
-    let currentIndex = 0;
-    let score = 0;
-    let currentQuestion = null;
 
     function selectSubject(subject) {
         currentSubject = subject;
