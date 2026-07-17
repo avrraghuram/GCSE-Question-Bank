@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GCSE Question Bank</title>
+    <title>GCSE Question Bank by Avyay</title>
 
     <style>
         body {
@@ -15,7 +15,7 @@
 
         .container {
             width: 420px;
-            margin: 80px auto;
+            margin: 80px auto;  
             padding: 30px;
             background: #ffffffee;
             border-radius: 15px;
@@ -230,6 +230,50 @@
             display: none !important;
         }
 
+        .qa-box {
+    background: #6c5ce7;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+.xp-box {
+    background: #4a90e2; /* bright blue */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+}
+#xpAmount {
+    display: none;
+}
+
+.qa-box {
+    background: #6c5ce7; /* bright purple */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+}
+#qaAmount {
+    display: none;
+}
+
+#qaAmount {
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    display: inline-block;
+}
+
+#qaAmount.show {
+    opacity: 1;
+}
+
+
+
+
 
     </style>
 </head>
@@ -293,7 +337,23 @@
     </div>
 </div>
 
+<div id="profileHeader" class="profile-header">
+    <h2 id="profileName">Av Raghuram</h2>
+    <div class="xp-box">
+        <span id="xpAmount">0 XP</span>
+        <div class="qa-box">
+    <span id="qaAmount">0 Questions Answered</span>
+</div>
 
+    </div>
+</div>
+<div id="badgeContainer" class="badge-container"></div>
+
+
+
+
+<button id="toggleXPBtn" onclick="toggleXP()">Show XP</button>
+<button id="toggleQABtn" onclick="toggleQA()">Show Questions Answered</button>
 
 
 <div id="subjectPage" class="container hidden">
@@ -546,6 +606,120 @@ function goBack() {
     function logout() {
         showLogin();
     }
+
+    // Load points or start at 0
+let xp = parseInt(localStorage.getItem("xp")) || 0;
+
+// Save points
+function saveXP() {
+    localStorage.setItem("xp", xp);
+}
+function awardXP(amount) {
+    xp += amount;
+    saveXP();
+    updateXPDisplay();
+}
+awardXP(10); // +10 XP for correct answer
+
+function updateXPDisplay() {
+    document.getElementById("xpAmount").textContent = xp + " XP";
+}
+updateXPDisplay();
+function updateXPDisplay() {
+    document.getElementById("xpAmount").textContent = xp + " XP";
+}
+updateXPDisplay();
+let badges = JSON.parse(localStorage.getItem("badges")) || [];
+
+function awardBadge(name) {
+    if (!badges.includes(name)) {
+        badges.push(name);
+        localStorage.setItem("badges", JSON.stringify(badges));
+        updateBadgesDisplay();
+    }
+}
+if (xp >= 1000) awardBadge("Bronze Learner");
+if (xp >= 5000) awardBadge("Silver Scholar");
+if (xp >= 20000) awardBadge("Gold Master");
+
+function updateBadgesDisplay() {
+    const container = document.getElementById("badgeContainer");
+    container.innerHTML = "";
+    badges.forEach(b => {
+        const badge = document.createElement("div");
+        badge.className = "badge";
+        badge.textContent = b;
+        container.appendChild(badge);
+    });
+}
+updateBadgesDisplay();
+let questionsAnswered = parseInt(localStorage.getItem("questionsAnswered")) || 0;
+
+function saveQuestionsAnswered() {
+    localStorage.setItem("questionsAnswered", questionsAnswered);
+}
+questionsAnswered++;
+saveQuestionsAnswered();
+updateQuestionsAnsweredDisplay();
+
+function updateQuestionsAnsweredDisplay() {
+    document.getElementById("qaAmount").textContent =
+        questionsAnswered + " Questions Answered";
+}
+updateQuestionsAnsweredDisplay();
+
+
+updateQuestionsAnsweredDisplay();
+if (questionsAnswered === 50) awardBadge("Bronze Aspirant");
+if (questionsAnswered === 100) awardBadge("Silver Scholar");
+if (questionsAnswered === 500) awardBadge("Gold Genius");
+
+function toggleXP() {
+    const xpEl = document.getElementById("xpAmount");
+    const btn = document.getElementById("toggleXPBtn");
+
+    if (xpEl.style.display === "none") {
+        xpEl.style.display = "inline-block";
+        btn.textContent = "Hide XP";
+    } else {
+        xpEl.style.display = "none";
+        btn.textContent = "Show XP";
+    }
+
+
+}function toggleQA() {
+    const qaEl = document.getElementById("qaAmount");
+    const btn = document.getElementById("toggleQABtn");
+
+    if (qaEl.style.display === "none") {
+        qaEl.style.display = "inline-block";
+        btn.textContent = "Hide Questions Answered";
+    } else {
+        qaEl.style.display = "none";
+        btn.textContent = "Show Questions Answered";
+    }
+}
+
+function toggleQA() {   
+    const qaEl = document.getElementById("qaAmount");
+    const btn = document.getElementById("toggleQABtn");
+
+    if (qaEl.classList.contains("show")) {
+        qaEl.classList.remove("show");
+        btn.textContent = "Show Questions Answered";
+    } else {
+        qaEl.classList.add("show");
+        btn.textContent = "Hide Questions Answered";
+    }
+}
+
+
+
+
+
+
+
+
 
     // Question bank data
     // Each subject gets its own large question list
